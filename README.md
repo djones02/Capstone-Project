@@ -8,7 +8,7 @@ Stop and shop is your one stop destination to find used car parts.
 
 ## React Tree
 
-
+<img src="./assets/capstone-react-tree.png">
 
 ## Schema
 
@@ -22,7 +22,7 @@ Stop and shop is your one stop destination to find used car parts.
 | /user_profile 	| GET       	| Display user profile                     	| MVP         	|
 | /user_profile 	| PATCH     	| Edit user profile                        	| MVP         	|
 | /user_profile 	| DELETE    	| Delete user profile                      	| MVP         	|
-| /all_users    	| GET       	| Display all users                        	| MVP         	|
+| /users        	| GET       	| Display all users                        	| MVP         	|
 | /user/:id     	| GET       	| Display selected user profile            	| MVP         	|
 | /listings     	| GET       	| Display all listings                     	| MVP         	|
 | /listings     	| POST      	| Add a listing to the page                	| MVP         	|
@@ -41,6 +41,8 @@ Stop and shop is your one stop destination to find used car parts.
 2. Have a message appear with new orders when someone logs in
 3. Have a quality of service rating for all users
 4. Have a favorites feature for users to favorite listings
+5. Allow for buyers to comment on listings
 
 ## Trello
 
+<img src="./assets/capstone-trello.png">
