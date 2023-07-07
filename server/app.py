@@ -1,32 +1,46 @@
-import os
-
 from flask import (
     Flask,
     jsonify,
-    make_response,
-    render_template,
-    send_from_directory,
     request,
+    session,
+    abort,
+    flash,
+    redirect,
+    url_for,
 )
 from flask_migrate import Migrate
-from flask_restful import Api, Resource
-# from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(
-    __name__,
-    static_url_path="",
-    static_folder="../client/dist",
-    template_folder="../client/dist",
+from flask_login import (
+    LoginManager,
+    login_user,
+    logout_user,
+    login_required,
+    current_user
 )
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///car.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.json.compact = False
-db = SQLAlchemy()
-db.init_app(app)
+from flask_bcrypt import generate_password_hash
+from config import (
+    app, 
+    db, 
+    api, 
+    Resource
+)
+from models import (
+    db,
+    User,
+    Listing,
+    Cart,
+    Carted_Item,
+    Order,
+    Order_Item,
+)
+
+
 migrate = Migrate(app, db)
-# CORS(app)
-api = Api(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
 
 
 if __name__ == "__main__":

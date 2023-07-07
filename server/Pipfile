@@ -15,6 +15,13 @@ flask-cors = "*"
 python-dotenv = "*"
 honcho = "*"
 importlib-metadata="*"
+sqlalchemy = "*"
+alembic = "*"
+ipdb = "*"
+requests = "*"
+flask-session = "*"
+flask-login = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 
