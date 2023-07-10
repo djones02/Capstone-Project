@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
+from flask_login import LoginManager, login_manager
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///car.db'
@@ -23,8 +24,10 @@ metadata = MetaData(naming_convention={
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
-
-bcrypt = Bcrypt(app)
-
-api = Api(app)
 CORS(app)
+bcrypt = Bcrypt(app)
+login = LoginManager(app)
+login_manager.session_protection = "strong"
+login_manager.login_view = "login"
+login_manager.login_message_category = "info"
+api = Api(app)
