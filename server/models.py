@@ -20,8 +20,10 @@ class User(db.Model, SerializerMixin, UserMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     cart = db.relationship("Cart", back_populates="user", cascade="all,delete-orphan")
+    orders = db.relationship("Order", back_populates="user", cascade="all,delete-orphan")
+    listings = association_proxy("cart", "listing")
 
-    serialize_rules = ("-cart",)
+    serialize_rules = ("-cart", "-listings", "-orders")
 
     @validates("email")
     def validate_email(self, key, email):
@@ -56,16 +58,18 @@ class Listing(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     quality = db.Column(db.String, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     picture = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    carted_items = db.relationship("Carted_Item", back_populates="product")
+    carted_items = db.relationship("Carted_Item", back_populates="listing", cascade="all,delete-orphan")
+    order_items = db.relationship("Order_Item", back_populates="listing", cascade="all,delete-orphan")
+    users = association_proxy("cart", "user")
 
-    serialize_rules = ("-carted_items",)
+    serialize_rules = ("-carted_items", "-order_items", "-users")
 
 
 
@@ -87,7 +91,7 @@ class Carted_Item(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(db.Integer, db.ForeignKey('carts.id'))
     listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'))
-    quantity = db.Column(db.Integer)
+    amount = db.Column(db.Integer)
 
     cart = db.relationship("Cart", back_populates="carted_items")
     listing = db.relationship("Listing", back_populates="carted_items")
@@ -104,7 +108,7 @@ class Order(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     user = db.relationship("User", back_populates="orders")
-    order_items = db.relationship("OrderItem", back_populates="order")
+    order_items = db.relationship("Order_Item", back_populates="order")
     
     serialize_rules = ("-user", "-order_items")
 
