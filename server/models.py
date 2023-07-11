@@ -61,12 +61,13 @@ class Listing(db.Model, SerializerMixin):
     price = db.Column(db.Float, nullable=False)
     picture = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    amount = db.Column(db.Integer, nullable=False, default=100)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    carted_items = db.relationship("Carted_Item", back_populates="listing", cascade="all,delete-orphan")
-    order_items = db.relationship("Order_Item", back_populates="listing", cascade="all,delete-orphan")
+    carted_items = db.relationship("Carted_Item", back_populates="listing")
+    order_items = db.relationship("Order_Item", back_populates="listing")
     users = association_proxy("cart", "user")
 
     serialize_rules = ("-carted_items", "-order_items", "-users")
@@ -81,7 +82,7 @@ class Cart(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship("User", back_populates="cart")
-    carted_items = db.relationship("Carted_Item", back_populates="cart")
+    carted_items = db.relationship("Carted_Item", back_populates="cart", cascade="all,delete-orphan")
 
     serialize_rules = ("-user", "-carted_items")
 
@@ -103,12 +104,11 @@ class Order(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     user = db.relationship("User", back_populates="orders")
-    order_items = db.relationship("Order_Item", back_populates="order")
+    order_items = db.relationship("Order_Item", back_populates="order", cascade="all,delete-orphan")
     
     serialize_rules = ("-user", "-order_items")
 
