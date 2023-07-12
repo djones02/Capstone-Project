@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 export default function Listings() {
   return (
-    <div>Listings</div>
+    <div>
+      <Navbar />
+      <h1>Listings</h1>
+    </div>
   )
 }
 
