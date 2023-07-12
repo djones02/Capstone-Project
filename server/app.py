@@ -295,30 +295,6 @@ class UserById(Resource):
         db.session.commit()
         return {}, 204
     
-    # def patch(self, id):
-#         data = request.get_json()
-#         carted_item = Carted_Item.query.filter_by(id=id).first()
-#         if not carted_item:
-#             return {"error": "Carted Item not found"}, 404
-#         if carted_item.cart.user_id != current_user.id:
-#             return {"error": "Unauthorized to edit this carted item"}, 401
-#         for attr in data:
-#             setattr(carted_item, attr, data.get(attr))
-#         try:
-#             db.session.add(carted_item)
-#             db.session.commit()
-#             return (
-#                 carted_item.to_dict(
-#                     only=(
-#                         "id",
-#                         "cart_id",
-#                         "listing_id",
-#                         "amount",
-#                     )
-#                 ), 201
-#             )
-#         except:
-#             return {"error": "Unable to update Carted Item"}, 400
 class Carts(Resource):
     method_decorators = [login_required]
     def get(self):
