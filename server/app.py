@@ -64,11 +64,12 @@ class Login(Resource):
         email = request.get_json()["email"]
         password = request.get_json()["password"]
         user = User.query.filter(User.email == email).first()
+        print(user.email, user._password_hash)
         if user:
             if user.authenticate(password):
                 session["user_id"] = user.id
                 login_user(user, remember=True)
-                return user.to_dict(), 200
+                return user.to_dict(), 201
         return {"error": "invalid login"}, 401
     
 class Logout(Resource):

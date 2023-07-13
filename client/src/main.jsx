@@ -14,6 +14,7 @@ import Users from './pages/Users.jsx'
 import UserById from './pages/UserById.jsx'
 import Cart from './pages/Cart.jsx'
 import Orders from './pages/Orders.jsx'
+import Layout from './features/Layout.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -22,17 +23,19 @@ root.render(
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />}/>
-          <Route path='/home' index element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/listings' element={<Listings />} />
-          <Route path='/listing/:id' element={<ListingById />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='/user/:id' element={<UserById />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/orders' element={<Orders />} />
+          <Route path="/" element={<Layout />}>
+            {/* <Route path='/' element={<App />}/> */}
+            <Route path='/home' index element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/listings' element={<Listings />} />
+            <Route path='/listing/:id' element={<ListingById />} />
+            <Route path='/users' element={<Users />} />
+            <Route path='/user/:id' element={<UserById />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/orders' element={<Orders />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

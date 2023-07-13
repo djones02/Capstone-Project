@@ -11,7 +11,7 @@ export default function App() {
   const navigate = useNavigate()
   useEffect(() => {
     console.log(user)
-    if (user == null) {
+    if (user != null) {
       fetch("/api/@me")
         .then(response => {
           if (response.ok) {
@@ -27,10 +27,13 @@ export default function App() {
   }, [])
   function onLogout(loggedOut) {
     setUser(null)
-    navigate("../")
+    // navigate("../")
   }
   function toggleSignup() {
     setShowSignup(prev => !prev)
+  }
+  function handleLogin(loginUser) {
+    setUser(loginUser)
   }
   return (
     <div>
@@ -39,9 +42,9 @@ export default function App() {
         {user != null ? (
           <Outlet context={[user, setUser]}/>
         ) : !showSignup ? (
-          <Login onLogin={setUser} showSignup={showSignup}/>
+          <Login onLogin={handleLogin} showSignup={showSignup}/>
         ) : (
-          <SignUpForm onLogin={setUser}/>
+          <SignUpForm onLogin={handleLogin}/>
         )}
       </main>
     </div>
