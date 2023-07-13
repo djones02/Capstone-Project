@@ -7,7 +7,7 @@ import {
     Textarea,
     Text
 } from "@chakra-ui/react"
-import {redirect, useNavigate} from "react-router-dom"
+import {redirect, useNavigate, Link} from "react-router-dom"
 
 export default function LoginForm({onLogin}) {
     const [loginForm, setLoginForm] = useState({email: "", password: ""})
@@ -29,12 +29,13 @@ export default function LoginForm({onLogin}) {
         })
             .then(response => {
                 console.log(response)
-                if (response.status === 200) {
-                    response.json().then(user => {
-                        console.log(user)
-                        onLogin(user)
-                        navigate("../home")
+                if (response.status === 201) {
+                    response.json().then(currentUser => {
+                        console.log(currentUser)
+                        onLogin(currentUser)
                     })
+                } else {
+                    console.log("login failed")
                 }
             })
             .catch(error => setErrors(error.errors))
@@ -87,11 +88,13 @@ export default function LoginForm({onLogin}) {
                 </InputGroup>
             </div>
             <div className='flex justify-around'>
-                <button
-                    className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-800 transition duration-300'
-                    type="submit">
-                    Login
-                </button>
+                {/* <Link to="/home"> */}
+                    <button
+                        className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-800 transition duration-300'
+                        type="submit">
+                        Login
+                    </button>
+                {/* </Link> */}
             </div>
         </form>
     )
