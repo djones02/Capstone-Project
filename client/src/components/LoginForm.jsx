@@ -33,6 +33,7 @@ export default function LoginForm({onLogin}) {
                     response.json().then(currentUser => {
                         console.log(currentUser)
                         onLogin(currentUser)
+                        navigate("/home")
                     })
                 } else {
                     console.log("login failed")
@@ -88,7 +89,7 @@ export default function LoginForm({onLogin}) {
                 </InputGroup>
             </div>
             <div className='flex justify-around'>
-                {/* <Link to="/home"> */}
+                {/* <Link to="/"> */}
                     <button
                         className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-800 transition duration-300'
                         type="submit">

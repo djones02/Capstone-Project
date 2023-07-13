@@ -87,18 +87,14 @@ export default function Navbar({user, onLogout, toggleSignup}) {
                       Signup
                     </Link>
                   </li>
-                  <li onClick={handleLogoutClick}>
-                  <Link to="/login" className='text-xl text-white hover:bg-gray-400'>
-                    Logout
-                  </Link>
-                </li>
                 </>
               ) : (
-                <li onClick={handleLogoutClick}>
-                  <Link to="/login" className='text-xl text-white hover:bg-gray-400'>
-                    Logout
-                  </Link>
-                </li>
+                // <li onClick={handleLogoutClick}>
+                //   <Link to="/login" className='text-xl text-white hover:bg-gray-400'>
+                //     Logout
+                //   </Link>
+                // </li>
+                <div></div>
               )}
             </ul>
           </div>

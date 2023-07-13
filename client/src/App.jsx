@@ -11,7 +11,7 @@ export default function App() {
   const navigate = useNavigate()
   useEffect(() => {
     console.log(user)
-    if (user != null) {
+    if (user == null) {
       fetch("/api/@me")
         .then(response => {
           if (response.ok) {
@@ -33,6 +33,7 @@ export default function App() {
     setShowSignup(prev => !prev)
   }
   function handleLogin(loginUser) {
+    console.log(loginUser)
     setUser(loginUser)
   }
   return (
