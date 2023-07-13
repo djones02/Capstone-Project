@@ -141,7 +141,7 @@ class Listings(Resource):
         page = int(request.args.get("page", 1))
         per_page = 20
         total = Listing.query.count()
-        listings = Listing.query.order_by(Listing.created_at.desc())
+        listings = Listing.query.order_by(Listing.id.desc())
         listings = listings.paginate()
         return {
             "listings": [

@@ -28,7 +28,7 @@ export default function Login({onLogin}) {
         ) : (
           <div
             className='flex flex-col justify-center items-center bg-gray-300'>
-            <SignUpForm onLogin={handleSuccessfulLogin} toggleShowLogin={toggleShowLogin}/>
+            <SignUpForm onLogin={onLogin} toggleShowLogin={toggleShowLogin}/>
             <Divider className='my-4'/>
             <p>
               Already have an account? &nbsp;
