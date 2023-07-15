@@ -43,7 +43,7 @@ bp = Blueprint(bp_name, __name__)
 @bp.app_errorhandler(exceptions.InternalServerError)
 def _handle_internal_server_error(ex):
     if request.path.startswith("/api/"):
-        return jsonidy(message=str(ex)), ex.code
+        return jsonify(message=str(ex)), ex.code
     else:
         return ex
 
@@ -349,8 +349,9 @@ class CartedItems(Resource):
         if existing_item:
             return {"error": "Item already exists in cart"}, 400
         try:
+            current_cart = Cart.query.filter_by(user_id=current_user.id).first()
             new_carted_item = Carted_Item(
-                cart_id=cart.id,
+                cart_id=current_cart.id,
                 listing_id=listing_id,
                 amount=data.get('amount')
             )
@@ -402,6 +403,12 @@ class CartedItemById(Resource):
         db.session.commit()
         return {}, 204
     
+class GetCartedItemsByCartId(Resource):
+    def get(self):
+        cart_id = request.args.get("cart_id")
+        carted_items = Carted_Item.query.filter(cart_id = cart_id).all()
+        return ([item.to_dict() for item in carted_items])
+
 class Orders(Resource):
     method_decorators = [login_required]
     def get(self):
@@ -409,13 +416,9 @@ class Orders(Resource):
         return orders, 200
     def post(self):
         data = request.get_json()
-        order_id = data.get("order_id")
-        existing_order = Order.query.filter_by(id=order_id).first()
-        if existing_order:
-            return {"error": "Order already exists"}, 400
         try:
             new_order = Order(
-                user_id=session.get('user_id')
+                user_id=data.get('user_id')
             )
             db.session.add(new_order)
             db.session.commit()
@@ -523,6 +526,7 @@ api.add_resource(Carts, "/api/carts")
 api.add_resource(CartById, "/api/carts/<int:id>")
 api.add_resource(CartedItems, "/api/carted_items")
 api.add_resource(CartedItemById, "/api/carted_items/<int:id>")
+api.add_resource(GetCartedItemsByCartId, "/api/carted_items")
 api.add_resource(Orders, "/api/orders")
 api.add_resource(OrderById, "/api/orders/<int:id>")
 api.add_resource(OrderItems, "/api/order_items")

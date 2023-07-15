@@ -161,7 +161,7 @@ export async function deleteCart(id) {
     })
 }
 
-export async function getCartedItems() {
+export async function getCartedItems(cartId) {
     return fetch(`/api/carted_items`)
         .then(response => {
             if (response.ok) {
@@ -224,7 +224,8 @@ export async function getOrders() {
         .catch(error => setErrors(error))
 }
 
-export async function addOrder(values) {
+export async function addOrder(userId) {
+    const values = {user_id: userId}
     return fetch(`/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -263,7 +264,8 @@ export async function getOrderItems() {
         .catch(error => setErrors(error))
 }
 
-export async function addOrderItem(values) {
+export async function addOrderItem(listing_id, amount) {
+    const values = {listing_id: listing_id, amount: amount}
     return fetch(`/api/order_items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
