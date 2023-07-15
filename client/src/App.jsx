@@ -10,13 +10,13 @@ export default function App() {
   const [showSignup, setShowSignup] = useState(false)
   const navigate = useNavigate()
   useEffect(() => {
-    console.log(user)
     if (user == null) {
       fetch("/api/@me")
         .then(response => {
           if (response.ok) {
             response.json().then(user => {
               setUser(user)
+              // console.log(user)
             })
           }
         })
