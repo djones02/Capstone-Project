@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Divider, Button} from '@chakra-ui/react';
 import LoginForm from "../components/LoginForm";
-import SignUpForm from '../components/SignUpForm';
+import SignUp from './Signup';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login({onLogin}) {
@@ -28,7 +28,7 @@ export default function Login({onLogin}) {
         ) : (
           <div
             className='flex flex-col justify-center items-center bg-gray-300'>
-            <SignUpForm onLogin={onLogin} toggleShowLogin={toggleShowLogin}/>
+            <SignUp onLogin={onLogin} toggleShowLogin={toggleShowLogin}/>
             <Divider className='my-4'/>
             <p>
               Already have an account? &nbsp;

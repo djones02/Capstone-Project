@@ -32,7 +32,7 @@ export default function LoginForm({onLogin}) {
                 if (response.status === 201) {
                     response.json().then(currentUser => {
                         console.log(currentUser)
-                        onLogin(currentUser)
+                        // onLogin(currentUser)
                         navigate("/home")
                     })
                 } else {
