@@ -514,6 +514,14 @@ class OrderItemById(Resource):
         db.session.commit()
         return {}, 204
 
+class FilteredOrderItems(Resource):
+    method_decorators = [login_required]
+    def get(self):
+        order_items = Order_Item.query.join(Listing).filter(Listing.user_id == current_user.id).all()
+        if not order_items:
+            return {"error": "No Order Items found"}, 404
+        return [order_item.to_dict() for order_item in order_items], 200
+
 api.add_resource(Login, "/api/login", endpoint="login")
 api.add_resource(Logout, "/api/logout", endpoint="logout")
 api.add_resource(Signup, "/api/signup", endpoint="signup")
@@ -531,6 +539,7 @@ api.add_resource(Orders, "/api/orders")
 api.add_resource(OrderById, "/api/orders/<int:id>")
 api.add_resource(OrderItems, "/api/order_items")
 api.add_resource(OrderItemById, "/api/order_items/<int:id>")
+api.add_resource(FilteredOrderItems, "/api/filtered_order_items")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

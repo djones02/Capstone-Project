@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Routes, Route, Outlet, useNavigate, redirect} from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Login from './pages/Login.jsx'
-import SignUpForm from './components/SignUpForm.jsx'
+import SignUp from './pages/Signup.jsx'
 import "./style.css"
 
 export default function App() {
@@ -45,7 +45,7 @@ export default function App() {
         ) : !showSignup ? (
           <Login onLogin={handleLogin} showSignup={showSignup}/>
         ) : (
-          <SignUpForm onLogin={handleLogin}/>
+          <SignUp onLogin={handleLogin}/>
         )}
       </main>
     </div>

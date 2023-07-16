@@ -307,3 +307,16 @@ export async function deleteOrderItem(id) {
         headers: {"Content-Type": "application/json"},
     })
 }
+
+export async function filteredOrderItems() {
+    return fetch("/api/filtered_order_items")
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .catch(error => {
+            setErrors(error)
+            return []
+        })
+}

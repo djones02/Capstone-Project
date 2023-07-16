@@ -93,12 +93,5 @@ export default function Cart() {
         </Flex>
       </Stack>
     </Box>
-    // <div className='flex flex-col items-center justify-center min-h-screen'>
-    //   <SimpleGrid columns={1}>
-        // {cartedItemsList.map((item) => {
-        //   return <CartedItemCard key={item.id} item={item} />
-        // })}
-    //   </SimpleGrid>
-    // </div>
   )
 }
