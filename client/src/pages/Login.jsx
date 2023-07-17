@@ -14,28 +14,32 @@ export default function Login({onLogin}) {
     <div>
         {showLogin ? (
           <div
-            className='flex flex-col justify-center items-center bg-gray-500'>
+            className='flex flex-col justify-center items-center'>
             <LoginForm onLogin={onLogin} />
-            <Divider className='my-4'/>
-            <p>
-              Need an account? &nbsp;
-              <Button
+            <Divider borderColor={"black"} className='my-4 py-6'/>
+            <p className='py-4'>
+              <b className='text-white'>Need an account? &nbsp;</b>
+              <button
+                style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-gray hover:bg-black text-white rounded-xl'
                 onClick={() => setShowLogin(false)}>
                 Sign Up
-              </Button>
+              </button>
             </p>
           </div>
         ) : (
           <div
-            className='flex flex-col justify-center items-center bg-gray-300'>
+            className='flex flex-col justify-center items-center'>
             <SignUp onLogin={onLogin} toggleShowLogin={toggleShowLogin}/>
-            <Divider className='my-4'/>
-            <p>
-              Already have an account? &nbsp;
-              <Button
+            <Divider borderColor={"black"} className='my-4 py-6'/>
+            <p className='py-4'>
+              <b className='text-white'>Already have an account? &nbsp;</b>
+              <button
+                style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-gray hover:bg-black text-white rounded-xl'
                 onClick={() => setShowLogin(true)}>
                 Log In
-              </Button>
+              </button>
             </p>
           </div>
         )}

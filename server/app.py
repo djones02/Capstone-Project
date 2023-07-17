@@ -526,7 +526,7 @@ class FilteredListings(Resource):
     method_decorators = [login_required]
     def get(self, id):
         user_listings = []
-        all_user_listings = Listing.query.filter_by(user_id = id).all()
+        all_user_listings = Listing.query.filter_by(user_id = id).order_by(Listing.id.desc()).all()
         if all_user_listings:
             for user_listing in all_user_listings:
                 user_listings.append(user_listing.to_dict())

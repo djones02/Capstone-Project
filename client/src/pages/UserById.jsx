@@ -51,43 +51,6 @@ export default function UserById() {
   }
   return (
     <div>
-      {/* <Container centerContent maxW="600px">
-        <SimpleGrid className='my-4 flex' columns={[2]} spacing="20px">
-          <Box 
-            display="flex"
-            height="400px"
-            width="300px"
-            alignItems="center">
-            <Container className='flex flex-col px-0 items-center'>
-              <Image 
-                src={userData?.pfp ? userData?.pfp : "https://placekitten.com/250/250"}
-                alt='Profile Picture Image'
-                boxSize="200px"
-                objectFit="cover"
-                borderRadius="full"
-              />
-              
-            </Container>
-          </Box>
-          <Container className='flex flex-col px-0 items-center'>
-            <Box 
-              display="flex"
-              height="400px"
-              width="300px"
-              alignItems="center"
-            >
-              <Container>
-                <div className='text-bold text-2xl text-center'>
-                  {userData?.name.toUpperCase() || "name would go here"}
-                </div>
-                <div className='text-center'>
-                  <b>Email:</b> {userData?.email || "email goes here"}
-                </div>
-              </Container>
-            </Box>
-          </Container>
-        </SimpleGrid>
-      </Container> */}
       <Container maxW={'7xl'}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
