@@ -3,6 +3,7 @@ import {Routes, Route, Outlet, useNavigate, redirect} from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/Signup.jsx'
+import Footer from './components/Footer.jsx'
 import "./style.css"
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
         ) : (
           <SignUp onLogin={handleLogin}/>
         )}
+        <Footer/>
       </main>
     </div>
   )

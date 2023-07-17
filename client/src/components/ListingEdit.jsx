@@ -19,7 +19,7 @@ const ListingSchema = Yup.object().shape({
   description: Yup.string().min(1, "Description must be at least 1 character").required("Must have a description"),
   amount: Yup.number().min(1, "Amount must be at least 1 character").required("Must have an amount"),
 })
-export default function ListingEdit({listing, handleListingUpdate, toggleShowEdit}) {
+export default function ListingEdit({listing, handleListingUpdate, onClose}) {
   const {name = "", quality = "", price = "", picture = "", description = "", amount = ""} = listing
   const navigate = useNavigate()
   const formik = useFormik({
@@ -43,7 +43,7 @@ export default function ListingEdit({listing, handleListingUpdate, toggleShowEdi
   }
   function handleSubmit(values) {
     updateListing(listing.id, values).then(updated => {
-      toggleShowEdit()
+      onClose()
       handleListingUpdate(updated)
     })
   }
@@ -52,7 +52,7 @@ export default function ListingEdit({listing, handleListingUpdate, toggleShowEdi
       <form
         onSubmit={formik.handleSubmit}
         method="post"
-        className='w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md'>
+        className='w-full max-w-sm mx-auto bg-white p-8 rounded-md'>
         <div className='flex justify-end place-items-end'>
           <Button
             size="md"
@@ -138,7 +138,7 @@ export default function ListingEdit({listing, handleListingUpdate, toggleShowEdi
           <button 
             type="button"
             className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
-            onClick={toggleShowEdit}>
+            onClick={onClose}>
             Cancel
           </button>
         </div>

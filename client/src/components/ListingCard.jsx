@@ -1,6 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
-import { Container, Box, Button, Image, FormControl, Input, InputGroup, InputRightAddon, Flex } from "@chakra-ui/react"
+import { 
+    Container, 
+    Box, 
+    Button, 
+    Image, 
+    FormControl, 
+    Input, 
+    InputGroup, 
+    InputRightAddon, 
+    Flex,
+    Center,
+    Heading,
+    Text,
+    Stack,
+} from "@chakra-ui/react"
 import {getCarts, addCart, addCartedItem} from "../features/helpers"
 export default function ListingCard({listing}) {
     const [user, setUser] = useState(null)
@@ -74,50 +88,89 @@ export default function ListingCard({listing}) {
         }
     }
     return (
-        <Container className='px-4' p="2">
-            <div className='card max-w-48 bg-base-100 shadow-xl bg-gray-600'>
-                <figure className='px-0 pt-7 object-contain'>
-                    <Image 
+        <Center py={12}>
+            <Box
+                role={'group'}
+                p={6}
+                maxW={'330px'}
+                w={'full'}
+                bg={"gray.600"}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={1}>
+                <Box
+                    rounded={'lg'}
+                    mt={-12}
+                    pos={'relative'}
+                    height={'230px'}
+                    marginTop={"5px"}
+                    _after={{
+                        transition: 'all .3s ease',
+                        content: '""',
+                        w: 'full',
+                        h: 'full',
+                        pos: 'absolute',
+                        top: 5,
+                        left: 0,
+                        backgroundImage: `url(${listing.picture})`,
+                        filter: 'blur(15px)',
+                        zIndex: -1,
+                    }}
+                    _groupHover={{
+                        _after: {
+                        filter: 'blur(20px)',
+                        },
+                    }}>
+                    <Image
+                        rounded={'lg'}
+                        height={230}
+                        width={282}
+                        objectFit={'cover'}
                         src={listing.picture}
-                        alt={listing.name}
-                        maxWidth="200px"
-                        objectFit="align"
-                        maxHeight={375}
-                        className='rounded-xl'
                     />
-                </figure>
-                
-                <div className='card-body items-center text-center'>
-                    <h2 className='card-title text-2xl'>{listing.name}</h2>
-                    <div className='text=bold text-xl'>
-                        Price: ${listing.price}
-                    </div>
-                </div>
-                <div className='card-actions'>
-                    <Flex justify="center">
-                        <Input 
-                            type="number"
-                            min="1"
-                            value={selectedAmount}
-                            onChange={handleAmountChange}
-                            size="sm"
-                            width="20%"
-                        />
-                        <Button onClick={handleDecrement}>-</Button>
-                        <Button onClick={handleIncrement}>+</Button>
-                    </Flex>
-                    <Flex>
-                        <Link to={`/listings/${listing.id}`}>
-                            <Button>
-                                Get More Info
+                </Box>
+                <Stack pt={10} align={'center'}>
+                    <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                        {listing.quality}
+                    </Text>
+                    <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                        {listing.name}
+                    </Heading>
+                    <Stack direction={'row'} align={'center'}>
+                        <Text fontWeight={800} fontSize={'xl'}>
+                            ${listing.price}
+                        </Text>
+                        <Text textDecoration={'line-through'} color={'gray.800'}>
+                            ${Math.round(listing.price * 1.2)}
+                        </Text>
+                    </Stack>
+                    <Stack direction="column" align="center" justify="center" mt={4}>
+                        <Flex justify="center">
+                            <Input 
+                                type="number"
+                                min="1"
+                                value={selectedAmount}
+                                onChange={handleAmountChange}
+                                size="sm"
+                                width="20%"
+                            />
+                            <Button size="sm" rounded="full" onClick={handleDecrement}>-</Button>
+                            <Button size="sm" rounded="full" onClick={handleIncrement}>+</Button>
+                        </Flex>
+                        <Flex>
+                            <Link to={`/listings/${listing.id}`}>
+                                <Button size="sm">
+                                    Get More Info
+                                </Button>
+                            </Link>
+                            <Button size="sm" onClick={handleAddToCart}>
+                                {isAdded ? "In Cart" : "Add to Cart"}
                             </Button>
-                        </Link>
-                        <Button onClick={handleAddToCart}>
-                            {isAdded ? "In Cart" : "Add to Cart"}
-                        </Button>
-                    </Flex>
-                </div>
-            </div>
-        </Container>
+                        </Flex>
+                    </Stack>
+                </Stack>
+            </Box>
+        </Center>
     )
 }

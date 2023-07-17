@@ -521,6 +521,30 @@ class FilteredOrderItems(Resource):
         if not order_items:
             return {"error": "No Order Items found"}, 404
         return [order_item.to_dict() for order_item in order_items], 200
+    
+class FilteredListings(Resource):
+    method_decorators = [login_required]
+    def get(self, id):
+        user_listings = []
+        all_user_listings = Listing.query.filter_by(user_id = id).all()
+        if all_user_listings:
+            for user_listing in all_user_listings:
+                user_listings.append(user_listing.to_dict())
+        return user_listings, 200
+    
+class SearchListings(Resource):
+    def get(self, search):
+        listings = Listing.query.filter(Listing.name.like(f"%{search}%")).all()
+        if listings:
+            return [listing.to_dict() for listing in listings], 200
+        return {"message": "No listings found"}
+    
+class SearchUsers(Resource):
+    def get(self, search):
+        users = User.query.filter(User.name.like(f"%{search}%")).all()
+        if users:
+            return [user.to_dict() for user in users], 200
+        return {"message": "No users found"}
 
 api.add_resource(Login, "/api/login", endpoint="login")
 api.add_resource(Logout, "/api/logout", endpoint="logout")
@@ -540,6 +564,9 @@ api.add_resource(OrderById, "/api/orders/<int:id>")
 api.add_resource(OrderItems, "/api/order_items")
 api.add_resource(OrderItemById, "/api/order_items/<int:id>")
 api.add_resource(FilteredOrderItems, "/api/filtered_order_items")
+api.add_resource(FilteredListings, "/api/filtered_listings/<int:id>")
+api.add_resource(SearchListings, "/api/search/<string:search>", endpoint="search")
+api.add_resource(SearchUsers, "/api/search_users/<string:search>", endpoint="search_users")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

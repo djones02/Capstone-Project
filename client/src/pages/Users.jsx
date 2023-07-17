@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useTransition, Suspense} from 'react'
-import { getUsers } from '../features/helpers'
+import { getUsers, searchUsers } from '../features/helpers'
 import {Container, Image, Button,  Box, InputGroup, SimpleGrid} from "@chakra-ui/react";
 import UserCard from '../components/UserCard';
 import Search from '../components/Search';
@@ -9,6 +9,7 @@ export default function Users() {
   const [hasNext, setHasNext] = useState(false);
   const [showInputs, setShowInputs] = useState(false);
   const [currentPage, setCurrentPage] = useState();
+  const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     getUsers(currentPage).then(data => {
       setUsersList(data.users)
@@ -17,6 +18,20 @@ export default function Users() {
       setCurrentPage(data.page)
     })
   }, [currentPage])
+  function handleSearch(search) {
+    if (search.length > 1) {
+      searchUsers(search.toLowerCase())
+        .then(users => {
+          if (users.message) {
+            setSearchResults("")
+          } else {
+            setSearchResults(users)
+          }
+        })
+    } else {
+      setSearchResults("")
+    }
+  }
   return (
     <div className='flex flex-col items-center justify-center min-h-screen'>
       <div>
@@ -25,7 +40,7 @@ export default function Users() {
             mt={4}
             width={{base: "90%", md: "md"}}
             textAlign={"center"}>
-            <Search />
+            <Search handleSearch={handleSearch}/>
           </InputGroup>
         </Box>
       </div>
@@ -33,7 +48,7 @@ export default function Users() {
         <div className='mx-auto join w-1/3 grid grid-cols-2'>
           <Button 
             onClick={() => setCurrentPage(current => current -1)}
-            className={hasPrev ? "join-item btn btn-outline" : "join-item btn btn-outline btn-disabled"}>
+            className={hasPrev ? "join-item btn btn-outline " : "join-item btn btn-outline btn-disabled"}>
             Previous
           </Button>
           <Button
@@ -43,9 +58,15 @@ export default function Users() {
           </Button>
         </div>
         <SimpleGrid columns={{sm: 2, md: 3}}>
-          {usersList.map(user => (
-            <UserCard key={user.id} user={user}/>
-          ))}
+          {!searchResults || searchResults.length < 1 ? (
+            usersList.map(user => (
+              <UserCard key={user.id} user={user}/>
+            ))
+          ) : (
+            searchResults.map(user => (
+              <UserCard key={user.id} user={user}/>
+            ))
+          )}
         </SimpleGrid>
       </div>
     </div>

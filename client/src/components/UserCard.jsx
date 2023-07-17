@@ -1,32 +1,69 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import {GridItem, Container, Box, Button, Image} from "@chakra-ui/react";
+import {
+    GridItem, 
+    Container, 
+    Box, 
+    Button, 
+    Image,
+    Badge,
+    Center,
+    Flex,
+    Heading,
+    Stack,
+    Text,
+    Avatar
+} from "@chakra-ui/react";
 
 export default function UserCard({user}) {
-  return (
-    <Container className='px-4 bg' p="2">
-        <div
-            className='card max-w-10 bg-gray-600 shadow-xl'>
-            <figure className='px-0 pt-10 h-50 object-contain'>
-                <Image 
-                    src={
-                        user.pfp ? user.pfp : "https://placekitten.com/250/250"
-                    }
-                    alt={user.name}
-                    boxSize="100px"
-                    objectFit="contain"
-                    className='rounded-xl'
+    return (
+        <Center py={6}>
+            <Box
+                maxW={'320px'}
+                w={'full'}
+                bg={'gray.600'}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                p={6}
+                textAlign={'center'}>
+                <Avatar
+                    size={'xl'}
+                    src={user?.pfp}
+                    alt={'Avatar Alt'}
+                    mb={4}
+                    pos={'relative'}
+                    _after={{
+                        content: '""',
+                        w: 4,
+                        h: 4,
+                        bg: 'green.300',
+                        border: '2px solid white',
+                        rounded: 'full',
+                        pos: 'absolute',
+                        bottom: 0,
+                        right: 3,
+                    }}
                 />
-            </figure>
-            <div className='card-body items-center text-center'>
-                <h2 className='card-title'>{user.name}</h2>
-                <div className='card-actions'>
+                <Heading fontSize={'2xl'} fontFamily={'body'}>
+                    {user?.name}
+                </Heading>
+                <Text fontWeight={600} mb={4}>
+                    {user?.email}
+                </Text>
+                <Stack>
                     <Link to={`/user/${user.id}`}>
-                        <Button>View Profile</Button>
+                        <Button
+                            flex={1}
+                            fontSize={'sm'}
+                            rounded={'full'}
+                            _focus={{
+                            bg: 'gray.200',
+                        }}>
+                            View Profile
+                        </Button>
                     </Link>
-                </div>
-            </div>
-        </div>
-    </Container>
-  )
+                </Stack>
+            </Box>
+        </Center>
+    )
 }

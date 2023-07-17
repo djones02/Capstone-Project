@@ -320,3 +320,36 @@ export async function filteredOrderItems() {
             return []
         })
 }
+
+export async function filteredListings(id) {
+    return fetch(`/api/filtered_listings/${id}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .catch(error => {
+            setErrors(error)
+            return []
+        })
+}
+
+export async function searchListings(search) {
+    return await fetch(`/api/search/${search}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .catch(error => setErrors(error))
+}
+
+export async function searchUsers(search) {
+    return await fetch(`/api/search_users/${search}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .catch(error => setErrors(error))
+}
