@@ -205,6 +205,24 @@ export default function ListingById() {
               <Button size="sm" rounded="full" onClick={handleIncrement}>+</Button>
             </Box>
           </Stack>
+            {user?.id === listingData?.user_id && (
+              <Button
+                rounded={'none'}
+                w={'full'}
+                mt={8}
+                size={'lg'}
+                py={'7'}
+                bg={useColorModeValue('gray.900', 'gray.50')}
+                color={useColorModeValue('white', 'gray.900')}
+                textTransform={'uppercase'}
+                _hover={{
+                  transform: 'translateY(2px)',
+                  boxShadow: 'lg',
+                }}
+                onClick={toggleShowEdit}>
+                {showEdit ? "Edit Listing" : "Edit Listing"}
+              </Button>
+            )}
             <Button
               rounded={'none'}
               w={'full'}
@@ -218,25 +236,9 @@ export default function ListingById() {
                 transform: 'translateY(2px)',
                 boxShadow: 'lg',
               }}
-              onClick={toggleShowEdit}>
-              {showEdit ? "Edit Listing" : "Edit Listing"}
+              onClick={handleAddToCart}>
+              {isAdded ? "In Cart" : "Add to Cart"}
             </Button>
-          <Button
-            rounded={'none'}
-            w={'full'}
-            mt={8}
-            size={'lg'}
-            py={'7'}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}
-            onClick={handleAddToCart}>
-            {isAdded ? "In Cart" : "Add to Cart"}
-          </Button>
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
             <Text>2-3 business days delivery</Text>

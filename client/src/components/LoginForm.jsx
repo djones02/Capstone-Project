@@ -34,6 +34,7 @@ export default function LoginForm({onLogin}) {
                         console.log(currentUser)
                         // onLogin(currentUser)
                         navigate("/home")
+                        window.location.reload()
                     })
                 } else {
                     console.log("login failed")
@@ -43,12 +44,13 @@ export default function LoginForm({onLogin}) {
     }
 
     return (
+        <div className='mt-20 rounded-md' style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}>
         <form
             onSubmit={event => handleSubmit(event)}
-            className='1-full max-w-sm mx-auto bg-gray-600 p-8 rounded-md shadow-md'>
-            <div className='mb-4'>
+            className='1-full max-w-sm mx-auto bg-gray p-8 rounded-md shadow-md'>
+            <div className='mt-2'>
                 <label
-                    className='block text-sm font-bold mb-2'
+                    className='block text-sm text-white font-bold mb-2'
                     htmlFor='email'>
                     Email
                 </label>
@@ -59,12 +61,13 @@ export default function LoginForm({onLogin}) {
                     onChange={handleChange}
                     value={loginForm.email}
                     autoComplete='email'
-                    className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500'
+                    color={"white"}
+                    className='w-full px-3 py-2 border border-gray-300 rounded-md hover:outline-dark_blue '
                 />
             </div>
-            <div className='mb-4'>
+            <div className='mt-4'>
                 <label 
-                    className='block text-sm font-bold mb-2'
+                    className='block text-sm text-white font-bold mb-2'
                     htmlFor='password'>
                     Password
                 </label>
@@ -77,26 +80,28 @@ export default function LoginForm({onLogin}) {
                         onChange={handleChange}
                         name="password"
                         id='password'
+                        color={"white"}
                         autoComplete="current-password"
+                        className='hover:outline-dark_blue'
                     />
                     <InputRightElement width="4.5rem">
-                        <Button 
-                            size="md"
+                        <button 
+                            type="button"
+                            className="btn btn-sm h-[40px] w-[74px] bg-dark_blue text-white hover:bg-light_blue"
                             onClick={handleClick}>
                             {display ? "Hide" : "Show"}
-                        </Button>
+                        </button>
                     </InputRightElement>
                 </InputGroup>
             </div>
-            <div className='flex justify-around'>
-                {/* <Link to="/"> */}
-                    <button
-                        className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-800 transition duration-300'
-                        type="submit">
-                        Login
-                    </button>
-                {/* </Link> */}
+            <div className='flex justify-around mt-8'>
+                <button
+                    className='btn btn-sm rounded-2xl border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300'
+                    type="submit">
+                    Login
+                </button>
             </div>
         </form>
+        </div>
     )
 }

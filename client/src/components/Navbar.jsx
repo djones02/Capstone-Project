@@ -16,46 +16,48 @@ export default function Navbar({user, onLogout, toggleSignup}) {
   }
   return (
     <div 
-        className='navbar bg-gray-600'>
+        className='navbar bg-black'>
           <div className='navbar-start'>
-            <div className='dropdown'>
-              <label
-              tabIndex={0}
-              className="btn btn-ghost lg:hidden hover:bg-gray-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="white">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </label>
-              <ul
+            {user ? (
+              <div className='dropdown'>
+                <label
                 tabIndex={0}
-                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bd-base-100 rounded-box w-52 bg-white'>
-                <b>
-                  <li>
-                    <Link to="/listings">
-                      Listings
-                    </Link>
-                  </li>
-                </b>
-                <b>
-                  <li>
-                    <Link to="/users">
-                      Users
-                    </Link>
-                  </li>
-                </b>
-              </ul>
-            </div>
-            <Link to="/home" className='btn btn-ghost normal-case text-3xl text-white hover:bg-gray-400'>
+                className="btn btn-ghost lg:hidden hover:bg-gray">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="white">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                  </svg>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bd-base-100 rounded-box w-52 bg-white'>
+                  <b>
+                    <li >
+                      <Link to="/listings">
+                        Listings
+                      </Link>
+                    </li>
+                  </b>
+                  <b>
+                    <li>
+                      <Link to="/users">
+                        Users
+                      </Link>
+                    </li>
+                  </b>
+                </ul>
+              </div>
+            ) : null}
+            <Link to="/home" className='btn btn-ghost normal-case text-3xl text-white hover:bg-gray'>
               Stop & Shop
             </Link>
           </div>
@@ -64,12 +66,12 @@ export default function Navbar({user, onLogout, toggleSignup}) {
               {user ? (
                 <>
                   <li>
-                    <Link to="/listings" className='text-xl text-white hover:bg-gray-400'>
+                    <Link style={{color: "white"}} to="/listings" className='text-xl text-white hover:bg-gray'>
                       Listings
                     </Link>
                   </li>
                   <li>
-                    <Link to="/users" className='text-xl text-white hover:bg-gray-400'>
+                    <Link style={{color: "white"}} to="/users" className='text-xl text-white hover:bg-gray '>
                       Users
                     </Link>
                   </li>
@@ -77,23 +79,18 @@ export default function Navbar({user, onLogout, toggleSignup}) {
               ) : null}
               {!user ? (
                 <>
-                  <li onClick={toggleSignup}>
-                    <Link to="/login" className="text-xl text-white hover:bg-gray-400">
+                  {/* <li onClick={toggleSignup}>
+                    <Link style={{color: "white"}} to="/login" className="text-xl text-white hover:bg-gray">
                       Login
                     </Link>
                   </li>
                   <li onClick={toggleSignup}>
-                    <Link to="/signup" className="text-xl text-white hover:bg-gray-400">
+                    <Link style={{color: "white"}} to="/signup" className="text-xl text-white hover:bg-gray">
                       Signup
                     </Link>
-                  </li>
+                  </li> */}
                 </>
               ) : (
-                // <li onClick={handleLogoutClick}>
-                //   <Link to="/login" className='text-xl text-white hover:bg-gray-400'>
-                //     Logout
-                //   </Link>
-                // </li>
                 <div></div>
               )}
             </ul>

@@ -57,23 +57,22 @@ export default function Profile() {
       filteredListings(user_id)
         .then((listings) => {
           setUserListings(listings)
-          console.log(listings)
         })
         .catch(error => {
           console.error(error)
         })
     }
   }
+  console.log(orderItems)
   function handleOrderItemFilter() {
     if (user !== null) {
       filteredOrderItems()
         .then((orderItems) => {
-          console.log(orderItems)
           if (!orderItems || orderItems.length === 0) {
             setOrderItems([])
             return
           }
-          const listingIds = orderItems.map((orderItem) => orderItem.id);
+          const listingIds = orderItems.map((orderItem) => orderItem.listing_id);
           const fetchListingPromises = listingIds.map((listingId) =>
             getListingById(listingId)
           );
@@ -97,27 +96,6 @@ export default function Profile() {
       setOrderItems([])
     }
   }
-  // function handleOrderItemFilter() {
-  //   if (user !== null) {
-  //     filteredOrderItems(user.id)
-  //       .then((orderItems) => {
-  //         const fetchListingPromises = orderItems.map((orderItem) =>
-  //           getListingById(orderItem.id)
-  //         );
-  //         Promise.all(fetchListingPromises).then((listings) => {
-  //           const updatedOrderItems = orderItems.map((orderItem, index) => ({
-  //             ...orderItem,
-  //             listing: listings[index],
-  //           }));
-  //           setOrderItems(updatedOrderItems);
-  //           console.log(updatedOrderItems);
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   }
-  // }
   function toggleShowForm() {
     setShowForm(prev => !prev)
   }
@@ -179,56 +157,6 @@ export default function Profile() {
           </Stack>
         </SimpleGrid>
       </Container>
-      {/* <Container maxW="600px">
-        <SimpleGrid className="my-4 flex" columns={[2]} spacing="20px">
-          <Box
-            display="flex"
-            bg="gray.400"
-            height="400px"
-            width="300px"
-            alignItems="center"
-          >
-            <Container className="flex flex-col px-0 items-center">
-              <Image 
-                src={user?.pfp ? user?.pfp : "https://placekitten.com/250/250"} 
-                alt="Profile Picture"
-                boxSize="200px"
-                objectFit="cover"
-                borderRadius="full"
-              />
-              <div className="text-bold text-2xl text-center">
-                {!showForm ? (
-                  <Button onClick={toggleShowForm}>
-                    Edit User
-                  </Button>
-                ) : (
-                  <Button onClick={toggleShowForm}>
-                    Cancel Edit
-                  </Button>
-                )}
-              </div>
-            </Container>
-          </Box>
-          <Box display="flex" bg="gray.400" height="400px" alignItems="center">
-            {!showForm ? (
-              <Container>
-                <Container>
-                  <div className="text-bold text-2xl text-center">
-                    <b>{user?.name.toUpperCase()}</b>
-                  </div>
-                  <p className='text-center'><b>Email:</b>{user?.email}</p>
-                </Container>
-              </Container>
-            ) : (
-              <EditUser 
-                user={user}
-                toggleShowForm={toggleShowForm}
-                className="z-10"
-              />
-            )}
-          </Box>
-        </SimpleGrid>
-      </Container> */}
       <Container maxW="1000px" mt={6}>
         <div>
           <Text className="text-center font-bold" fontSize={50}>
@@ -237,7 +165,7 @@ export default function Profile() {
           {userListings.length > 0 ? (
             <SimpleGrid columns={[2, null, 3]} spacing="40px" className='mt-4'>
               {userListings.map(listing => (
-                <Center py={12}>
+                <Center py={12} key={listing.id}>
                   <Box
                       role={'group'}
                       p={6}
@@ -297,19 +225,6 @@ export default function Profile() {
                       </Stack>
                     </Box>
                 </Center>
-                // <Box maxW="500px" key={listing.id}>
-                //   <Image
-                //     key={listing.id}
-                //     src={listing.picture}
-                //     maxwidth={250}
-                //     objectFit="align"
-                //     maxHeight={275}
-                //     border="2px"
-                //     borderColor="gray.200"
-                //     className='rounded-xl'
-                //   />
-                //   <Text textAlign="center"><b>{listing.name}</b></Text>
-                // </Box>
               ))}
             </SimpleGrid>
           ) : (
@@ -328,13 +243,14 @@ export default function Profile() {
                     <tr key={orderItem.id}>
                       <td key={orderItem.id}>
                         <Text key={orderItem.id}>
-                          {orderItem.created_at}
+                          <b>Posted On: </b>{orderItem.created_at}
                         </Text>
-                        {orderItem.listing ? (
-                          <Text>{orderItem.listing.name}</Text>
+                        {orderItem?.listing ? (
+                          <Text><b>Name: </b>{orderItem?.listing.name}</Text>
                         ) : (
                           <Text>No Listings Found</Text>
                         )}
+                        <Text><b>Amount: </b>{orderItem?.amount}</Text>
                       </td>
                     </tr>
                   ))

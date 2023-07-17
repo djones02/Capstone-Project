@@ -39,7 +39,11 @@ export default function App() {
   }
   return (
     <div>
-      <main>
+      <main 
+        style={{
+          background: "linear-gradient(90deg, #2160D4 24%, #3D76E1 58%, #729CE9 100%)"
+        }}
+        className='min-h-screen'>
         <Navbar user={user} onLogout={onLogout} toggleSignup={toggleSignup}/>
         {user != null ? (
           <Outlet context={[user, setUser]}/>
@@ -48,7 +52,7 @@ export default function App() {
         ) : (
           <SignUp onLogin={handleLogin}/>
         )}
-        <Footer/>
+        <Footer user={user}/>
       </main>
     </div>
   )
