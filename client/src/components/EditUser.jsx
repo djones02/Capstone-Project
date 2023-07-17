@@ -19,7 +19,7 @@ const EditUserSchema = Yup.object().shape({
   email: Yup.string().email().required("Email is Required"),
 })
 
-export default function EditUser({user, toggleShowForm}) {
+export default function EditUser({user, onClose, handleUserUpdate}) {
   const [userData, setUserData] = useState()
   const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState(user)
@@ -36,7 +36,7 @@ export default function EditUser({user, toggleShowForm}) {
   }
   function handleSubmit(id, values) {
     updateUser(id, values)
-      .then(toggleShowForm())
+      .then(onClose())
       .then(updated => {
         console.log(updated)
         setCurrentUser(updated)
@@ -121,22 +121,19 @@ export default function EditUser({user, toggleShowForm}) {
           <div>{formik.errors.pfp}</div>
         ) : null}
       </div>
-      <div className="flex justify-around" style={{marginTop:"20px"}}>
-        <button
-          className="w-[125px] bg-playstation_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-darker_blue transition duration-300"
-          type="submit"
-          disabled={navigation.state === "submitting"}>
-          {navigation.state === "submitting" && <Spinner />}
-          Save
-        </button>
-        <button
-          type="button"
-          onClick={toggleShowForm}
-          style={{marginLeft:"20px"}}
-          className="w-[125px] bg-tomato text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-darker_red transition duration-300">
-          Cancel
-        </button>
-      </div>
+      <div className='flex justify-around'>
+          <button 
+            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            type='submit'>
+            Save
+          </button>
+          <button 
+            type="button"
+            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            onClick={onClose}>
+            Cancel
+          </button>
+        </div>
     </form>
   )
 }

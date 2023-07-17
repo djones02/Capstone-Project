@@ -5,7 +5,7 @@ import {
   useParams,
   useOutletContext,
 } from "react-router-dom";
-import {getCurrentUser, getListings, getListingById, filteredOrderItems} from "../features/helpers"
+import {getCurrentUser, getListings, getListingById, filteredOrderItems, filteredListings} from "../features/helpers"
 import {
   Container,
   Image,
@@ -14,8 +14,18 @@ import {
   Button,
   Text,
   Divider,
+  Flex,
+  Circle,
+  Badge,
+  Icon,
+  chakra,
+  Tooltip,
+  Center,
+  Heading,
+  Stack,
 } from "@chakra-ui/react";
-import EditUser from "../components/EditUser"
+import { FiShoppingCart } from 'react-icons/fi';
+import EditUserModal from "../components/EditUserModal"
 
 export default function Profile() {
   const [profileData, setProfileData] = useState()
@@ -44,11 +54,10 @@ export default function Profile() {
   function handleFilter() {
     if (user !== null) {
       const user_id = user?.id
-      getListings()
+      filteredListings(user_id)
         .then((listings) => {
-          const userListings = listings.listings.filter(listing => listing.user_id === user_id)
-          setUserListings(userListings)
-          console.log(userListings)
+          setUserListings(listings)
+          console.log(listings)
         })
         .catch(error => {
           console.error(error)
@@ -112,9 +121,65 @@ export default function Profile() {
   function toggleShowForm() {
     setShowForm(prev => !prev)
   }
+  function handleUserUpdate(user) {
+    setUser(user)
+  }
   return (
     <div>
-      <Container maxW="600px">
+      {showForm && (
+        <EditUserModal 
+          isOpen={showForm}
+          onOpen={toggleShowForm}
+          onClose={toggleShowForm}
+          handleUserUpdate={handleUserUpdate}
+          user={user}
+        />
+      )}
+      <Container maxW={'7xl'}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 18, md: 24 }}>
+          <Flex>
+            <Image
+              rounded={'md'}
+              alt={'product image'}
+              src={user?.pfp ? user?.pfp : "https://placekitten.com/250/250"}
+              fit={'cover'}
+              align={'center'}
+              w={{base:'100%', sm: "300px", md:"400px", lg: "500px"}}
+              h={{ base: '100%', sm: '300px', md:"400px", lg: '500px' }}
+            />
+          </Flex>
+          <Stack spacing={{ base: 6, md: 10 }}>
+            <Box as={'header'}>
+              <Heading
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                {user?.name.toUpperCase() || "name would go here"}
+              </Heading>
+              <Text
+                fontWeight={300}
+                fontSize={'2xl'}>
+                {user?.email || "email goes here"}
+              </Text>
+              <div>
+                {!showForm ? (
+                  <Button onClick={toggleShowForm}>
+                    Edit User
+                  </Button>
+                ) : (
+                  <Button onClick={toggleShowForm}>
+                    Cancel Edit
+                  </Button>
+                )}
+              </div>
+            </Box>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+      {/* <Container maxW="600px">
         <SimpleGrid className="my-4 flex" columns={[2]} spacing="20px">
           <Box
             display="flex"
@@ -163,28 +228,88 @@ export default function Profile() {
             )}
           </Box>
         </SimpleGrid>
-      </Container>
+      </Container> */}
       <Container maxW="1000px" mt={6}>
         <div>
           <Text className="text-center font-bold" fontSize={50}>
             Listings
           </Text>
           {userListings.length > 0 ? (
-            <SimpleGrid columns={[3, null, 4]} spacing="40px" className='mt-4'>
-              {userListings.slice(0, 4).map(listing => (
-                <Box maxW="500px" key={listing.id}>
-                  <Image
-                    key={listing.id}
-                    src={listing.picture}
-                    maxwidth={250}
-                    objectFit="align"
-                    maxHeight={275}
-                    border="2px"
-                    borderColor="gray.200"
-                    className='rounded-xl'
-                  />
-                  <Text textAlign="center"><b>{listing.name}</b></Text>
-                </Box>
+            <SimpleGrid columns={[2, null, 3]} spacing="40px" className='mt-4'>
+              {userListings.map(listing => (
+                <Center py={12}>
+                  <Box
+                      role={'group'}
+                      p={6}
+                      maxW={'330px'}
+                      w={'full'}
+                      bg={"gray.600"}
+                      boxShadow={'2xl'}
+                      rounded={'lg'}
+                      pos={'relative'}
+                      zIndex={1}>
+                      <Box
+                          rounded={'lg'}
+                          mt={-12}
+                          pos={'relative'}
+                          height={'230px'}
+                          marginTop={"5px"}
+                          _after={{
+                              transition: 'all .3s ease',
+                              content: '""',
+                              w: 'full',
+                              h: 'full',
+                              pos: 'absolute',
+                              top: 5,
+                              left: 0,
+                              backgroundImage: `url(${listing.picture})`,
+                              filter: 'blur(15px)',
+                              zIndex: -1,
+                          }}
+                          _groupHover={{
+                              _after: {
+                              filter: 'blur(20px)',
+                              },
+                          }}>
+                          <Image
+                              rounded={'lg'}
+                              height={230}
+                              width={282}
+                              objectFit={'cover'}
+                              src={listing.picture}
+                          />
+                      </Box>
+                      <Stack pt={10} align={'center'}>
+                          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                              {listing.quality}
+                          </Text>
+                          <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                              {listing.name}
+                          </Heading>
+                          <Stack direction={'row'} align={'center'}>
+                              <Text fontWeight={800} fontSize={'xl'}>
+                                  ${listing.price}
+                              </Text>
+                              <Text textDecoration={'line-through'} color={'gray.800'}>
+                                  ${Math.round(listing.price * 1.2)}
+                              </Text>
+                          </Stack>
+                      </Stack>
+                    </Box>
+                </Center>
+                // <Box maxW="500px" key={listing.id}>
+                //   <Image
+                //     key={listing.id}
+                //     src={listing.picture}
+                //     maxwidth={250}
+                //     objectFit="align"
+                //     maxHeight={275}
+                //     border="2px"
+                //     borderColor="gray.200"
+                //     className='rounded-xl'
+                //   />
+                //   <Text textAlign="center"><b>{listing.name}</b></Text>
+                // </Box>
               ))}
             </SimpleGrid>
           ) : (

@@ -38,7 +38,7 @@ export default function Navbar({user, onLogout, toggleSignup}) {
               </label>
               <ul
                 tabIndex={0}
-                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bd-base-100 rounded-box w-52'>
+                className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bd-base-100 rounded-box w-52 bg-white'>
                 <b>
                   <li>
                     <Link to="/listings">

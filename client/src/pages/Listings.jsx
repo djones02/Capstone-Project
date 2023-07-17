@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo, useTransition, Suspense} from 'react'
-import {getListings} from "../features/helpers"
+import {getListings, searchListings} from "../features/helpers"
 import {
   SimpleGrid,
   GridItem,
@@ -22,6 +22,7 @@ export default function Listings() {
   const [hasNext, setHasNext] = useState(false)
   const [showInputs, setShowInputs] = useState(false)
   const [currentPage, setCurrentPage] = useState()
+  const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     getListings(currentPage).then(data => {
       setListingsList(data.listings)
@@ -35,6 +36,20 @@ export default function Listings() {
   }
   function toggleShowInputs() {
     setShowInputs(prev => !prev)
+  }
+  function handleSearch(search) {
+    if (search.length > 1) {
+      searchListings(search.toLowerCase())
+        .then(users => {
+          if (users.message) {
+            setSearchResults("")
+          } else {
+            setSearchResults(users)
+          }
+        })
+    } else {
+      setSearchResults("")
+    }
   }
   return (
     <div className='flex flex-col items-center justify-center min-h-screen'>
@@ -55,7 +70,7 @@ export default function Listings() {
           </Box>
           <Box>
             <InputGroup mt={4} width={{base: "90%", md: "md"}} textAlign={"center"}>
-              <Search />
+              <Search handleSearch={handleSearch}/>
             </InputGroup>
           </Box>
         </Flex>
@@ -74,9 +89,15 @@ export default function Listings() {
           </Button>
         </div>
         <SimpleGrid columns={{sm: 2, md: 3}}>
-          {listingsList.map(listing => (
-            <ListingCard key={listing.id} listing={listing}/>
-          ))}
+          {!searchResults || searchResults.length < 1 ? (
+            listingsList.map(listing => (
+              <ListingCard key={listing.id} listing={listing}/>
+            ))
+          ) : (
+            searchResults.map(listing => (
+              <ListingCard key={listing.id} listing={listing}/>
+            ))
+          )}
         </SimpleGrid>
       </div>
     </div>
