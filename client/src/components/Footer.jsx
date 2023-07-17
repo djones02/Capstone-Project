@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer({user}) {
     return (
-        <Box className='bg-black fixed inset-x-0 bottom-0 p-4'
-            style={{position:"fixed", left:0, right:0, bottom:0}}>
+        <Box className='bg-black fixed inset-x-0 bottom-0 p-2'
+            style={{position:"fixed", left:0, right:0, bottom:0, zIndex:'9999'}}>
             <Container
                 as={Stack}
                 maxW={'6xl'}

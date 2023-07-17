@@ -24,7 +24,7 @@ import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import ListingEdit from '../components/ListingEdit';
 import EditListingModal from '../components/EditListingModal';
-
+import { AddIcon, MinusIcon } from "@chakra-ui/icons"
 export default function ListingById() {
   const [listingData, setListingData] = useState()
   const [toggle, setToggle] = useState(false)
@@ -142,6 +142,8 @@ export default function ListingById() {
             align={'center'}
             w={'100%'}
             h={{ base: '100%', sm: '400px', lg: '500px' }}
+            mt={24}
+            style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}}
           />
         </Flex>
         <Stack spacing={{ base: 6, md: 10 }}>
@@ -149,13 +151,14 @@ export default function ListingById() {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
+              className='text-white'>
               {listingData?.name}
             </Heading>
             <Text
-              color={useColorModeValue('gray.900', 'gray.400')}
               fontWeight={300}
-              fontSize={'2xl'}>
+              fontSize={'2xl'}
+              className='text-white'>
               ${listingData?.price}
             </Text>
           </Box>
@@ -164,12 +167,12 @@ export default function ListingById() {
             direction={'column'}
             divider={
               <StackDivider
-                borderColor={useColorModeValue('gray.200', 'gray.600')}
+                borderColor={"#F5F5F5"}
               />
             }>
             <VStack spacing={{ base: 4, sm: 6 }}>
               <Text
-                color={useColorModeValue('gray.500', 'gray.400')}
+                className='text-white'
                 fontSize={'2xl'}
                 fontWeight={'300'}>
                 {listingData?.description}
@@ -180,12 +183,13 @@ export default function ListingById() {
                 fontSize={{ base: '16px', lg: '18px' }}
                 fontWeight={'500'}
                 textTransform={'uppercase'}
-                mb={'4'}>
+                mb={'4'}
+                className='text-white'>
                 Product Details
               </Text>
               <List spacing={2}>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
+                <ListItem className='text-white'>
+                  <Text as={'span'} fontWeight={'bold'} className='text-white'>
                     Quality:
                   </Text>{' '}
                   {listingData?.quality}
@@ -193,28 +197,37 @@ export default function ListingById() {
               </List>
             </Box>
             <Box>
+              <b className='mr-4 text-white'>Amount:</b>
               <Input 
                 type="number"
                 min="1"
                 value={selectedAmount}
                 onChange={handleAmountChange}
                 size="sm"
-                width="20%"
+                width="10%"
+                borderRadius={"full"}
+                mr={2}
+                mt={2}
+                color={"#483D3F"}
+                backgroundColor={"#F5F5F5"}
               />
-              <Button size="sm" rounded="full" onClick={handleDecrement}>-</Button>
-              <Button size="sm" rounded="full" onClick={handleIncrement}>+</Button>
+              <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleDecrement}><MinusIcon/></button>
+              <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleIncrement}><AddIcon/></button>
             </Box>
           </Stack>
             {user?.id === listingData?.user_id && (
               <Button
-                rounded={'none'}
+                rounded={'full'}
                 w={'full'}
                 mt={8}
                 size={'lg'}
                 py={'7'}
-                bg={useColorModeValue('gray.900', 'gray.50')}
-                color={useColorModeValue('white', 'gray.900')}
+                bg={"#483D3F"}
+                color={"#F5F5F5"}
                 textTransform={'uppercase'}
+                style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+                onMouseEnter={(e) => e.target.style.backgroundColor = "#584B4D"}
+                onMouseLeave={(e) => e.target.style.backgroundColor = "#483D3F"}
                 _hover={{
                   transform: 'translateY(2px)',
                   boxShadow: 'lg',
@@ -224,14 +237,18 @@ export default function ListingById() {
               </Button>
             )}
             <Button
-              rounded={'none'}
+              rounded={'full'}
               w={'full'}
               mt={8}
+              mb={2}
               size={'lg'}
               py={'7'}
-              bg={useColorModeValue('gray.900', 'gray.50')}
-              color={useColorModeValue('white', 'gray.900')}
+              bg={"#483D3F"}
+              color={"#F5F5F5"}
               textTransform={'uppercase'}
+              style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+              onMouseEnter={(e) => e.target.style.backgroundColor = "#584B4D"}
+              onMouseLeave={(e) => e.target.style.backgroundColor = "#483D3F"}
               _hover={{
                 transform: 'translateY(2px)',
                 boxShadow: 'lg',
@@ -239,9 +256,9 @@ export default function ListingById() {
               onClick={handleAddToCart}>
               {isAdded ? "In Cart" : "Add to Cart"}
             </Button>
-          <Stack direction="row" alignItems="center" justifyContent={'center'}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
+          <Stack direction="row" alignItems="center" justifyContent={'center'} mb={32}>
+            <MdLocalShipping color='white'/>
+            <Text className='text-white'>2-3 business days delivery</Text>
           </Stack>
         </Stack>
       </SimpleGrid>

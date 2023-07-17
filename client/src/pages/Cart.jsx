@@ -73,6 +73,7 @@ export default function Cart() {
         direction={{base:"column", lg:"row"}}
         align={{lg: "flex-start"}}
         spacing={{base:"8", md:"16"}}
+        className='mt-24'
       >
         <Stack spacing={{base:"8", md:"10"}} flex="2">
           <Heading fontSize="2xl" fontWeight="extrabold">
@@ -86,9 +87,9 @@ export default function Cart() {
         </Stack>
         <Flex direction="column" align="center" flex="1">
           <CartOrderSummary cartedItemsList={cartedItemsList}/>
-          <HStack mt="6" fontWeight="semibold">
+          <HStack mt="6" fontWeight="semibold" className='mb-28'>
             <p>or</p>
-            <Link to="/listings">Continue Shopping</Link>
+            <Link to="/listings" >Continue Shopping</Link>
           </HStack>
         </Flex>
       </Stack>

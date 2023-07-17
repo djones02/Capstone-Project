@@ -7,14 +7,16 @@ export default function Search({handleSearch}) {
     handleSearch(event.target.value);
   }
   return (
-    <InputGroup>
+    <InputGroup className='bg-white rounded-full ml-6 my-6'>
       <Input
         placeholder='Search...'
         onChange={event => handleChange(event)}
         name='search'
+        borderRadius={"full"}
+        color={"black"}
       />
       <InputRightElement>
-        <SearchIcon />
+        <SearchIcon color={"black"}/>
       </InputRightElement>
     </InputGroup>
     

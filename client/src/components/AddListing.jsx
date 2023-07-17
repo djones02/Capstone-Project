@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useTransition} from 'react'
 import {getListings, addListing} from "../features/helpers"
 import ListingCard from "./ListingCard"
-import {SimpleGrid, GridItem, Button} from "@chakra-ui/react";
+import {SimpleGrid, GridItem, Button, Box} from "@chakra-ui/react";
 import {Formik, Field, Form, ErrorMessage} from "formik";
 import {redirect} from "react-router-dom";
 import * as Yup from "yup";
@@ -42,69 +42,75 @@ export default function AddListing({onClose, addNewListing}) {
                 {({isSubmitting}) => (
                     <Form>
                         <div className='flex flex-col'>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor="name"><b>Name</b></label>
+                            <div className='flex flex-row justify-end mt-2'>
+                                <label className='text-white mx-4' htmlFor="name"><b>Name</b></label>
                                 <Field
                                     type="text"
                                     name="name"
                                     placeholder="Name"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3"
                                 />
                             </div>
-                            <ErrorMessage name='name' component="div" className='flex flex-row justify-end'/>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor='quality'><b>Quality</b></label>
+                            <ErrorMessage name='name' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex flex-row justify-end mt-6'>
+                                <label className='text-white mx-4' htmlFor='quality'><b>Quality</b></label>
                                 <Field
                                     type="text"
                                     name="quality"
                                     placeholder="Quality"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3"
                                 />
                             </div>
-                            <ErrorMessage name='quality' component="div" className='flex flex-row justify-end'/>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor='price'><b>Price</b></label>
+                            <ErrorMessage name='quality' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex flex-row justify-end mt-6'>
+                                <label className='text-white mx-4' htmlFor='price'><b>Price</b></label>
                                 <Field
                                     type="text"
                                     name="price"
                                     placeholder="Price"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3"
                                 />
                             </div>
-                            <ErrorMessage name='price' component="div" className='flex flex-row justify-end'/>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor='picture'><b>Picture</b></label>
+                            <ErrorMessage name='price' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex flex-row justify-end mt-6'>
+                                <label className='text-white mx-4' htmlFor='picture'><b>Picture</b></label>
                                 <Field
                                     type="text"
                                     name="picture"
                                     placeholder="Picture"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3"
                                 />
                             </div>
-                            <ErrorMessage name='picture' component="div" className='flex flex-row justify-end'/>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor='description'><b>Description</b></label>
+                            <ErrorMessage name='picture' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex flex-row justify-end mt-6'>
+                                <label className='text-white mx-4' htmlFor='description'><b>Description</b></label>
                                 <Field
                                     type="text"
                                     name="description"
                                     placeholder="Description"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3"
                                 />
                             </div>
-                            <ErrorMessage name='description' component="div" className='flex flex-row justify-end'/>
-                            <div className='flex flex-row justify-end'>
-                                <label htmlFor='amount'><b>Amount</b></label>
+                            <ErrorMessage name='description' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex flex-row justify-end mt-6'>
+                                <label className='text-white mx-4' htmlFor='amount'><b>Amount</b></label>
                                 <Field
                                     type="text"
                                     name="amount"
                                     placeholder="Amount"
-                                    className="border-2 w-2/3"
+                                    className="p-1 rounded-xl w-2/3 hover:border-dark_blue"
                                 />
                             </div>
-                            <ErrorMessage name='amount' component="div" className='flex flex-row justify-end'/>
-                            <Button
-                                type='submit'
-                                disabled={isSubmitting}>Create Listing</Button>
+                            <ErrorMessage name='amount' component="div" className='flex flex-row justify-end text-white'/>
+                            <div className='flex justify-center mt-6'>
+                                <button
+                                    className='btn btn-sm rounded-2xl justify-center border-white w-3/6 h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2'
+                                    type='submit'
+                                    disabled={isSubmitting}
+                                >
+                                    Create Listing
+                                </button>
+                            </div>
                         </div>
                     </Form>
                 )}
