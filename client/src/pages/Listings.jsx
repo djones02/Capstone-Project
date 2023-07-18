@@ -79,7 +79,7 @@ export default function Listings() {
         </Flex>
       </div>
       <div className='my-4'>
-        <div className='mx-auto join w-1/3 grid grid-cols-2'>
+        <div className='mx-auto join w-1/3 grid grid-cols-2 max-w-xs'>
           <button
             className={hasPrev ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}
             onClick={() => setCurrentPage(current => current -1)}>

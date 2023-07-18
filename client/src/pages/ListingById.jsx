@@ -141,12 +141,12 @@ export default function ListingById() {
             fit={'cover'}
             align={'center'}
             w={'100%'}
-            h={{ base: '100%', sm: '400px', lg: '500px' }}
+            h={{ base: '100%', sm: '400px', md: '500px' }}
             mt={24}
             style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}}
           />
         </Flex>
-        <Stack spacing={{ base: 6, md: 10 }}>
+        <Stack spacing={{ base: 6, md: 10 }} mt={20}>
           <Box as={'header'}>
             <Heading
               lineHeight={1.1}
