@@ -50,33 +50,38 @@ export default function UserById() {
     }
   }
   return (
-    <div>
+    <div className='pb-32'>
       <Container maxW={'7xl'}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
-          py={{ base: 18, md: 24 }}>
+          py={{ base: 18, md: 24 }}
+          px={{base: 18, md: 24}}>
           <Flex>
             <Image
-              rounded={'md'}
+              rounded={'full'}
               alt={'product image'}
               src={userData?.pfp ? userData?.pfp : "https://placekitten.com/250/250"}
               fit={'cover'}
               align={'center'}
+              mt={20}
               w={{base:'100%', sm: "300px", md:"400px", lg: "500px"}}
               h={{ base: '100%', sm: '300px', md:"400px", lg: '500px' }}
+              style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}}
             />
           </Flex>
-          <Stack spacing={{ base: 6, md: 10 }}>
+          <Stack spacing={{ base: 6, md: 10 }} justifyContent={"space-around"}>
             <Box as={'header'}>
               <Heading
                 lineHeight={1.1}
                 fontWeight={600}
+                className='text-white'
                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
                 {userData?.name.toUpperCase() || "name would go here"}
               </Heading>
               <Text
                 fontWeight={300}
+                className='text-white'
                 fontSize={'2xl'}>
                 {userData?.email || "email goes here"}
               </Text>
@@ -84,11 +89,13 @@ export default function UserById() {
           </Stack>
         </SimpleGrid>
       </Container>
-      <SimpleGrid columns={{sm: 2, md: 3}}>
-        {userListings.map(listing => (
-          <ListingCard key={listing.id} listing={listing}/>
-        ))}
-      </SimpleGrid>
+      <Container maxW={"8xl"}>
+        <SimpleGrid columns={{sm: 1, md: 2, lg:3, xl:4}}>
+          {userListings.map(listing => (
+            <ListingCard key={listing.id} listing={listing}/>
+          ))}
+        </SimpleGrid>
+      </Container>
     </div>
   )
 }

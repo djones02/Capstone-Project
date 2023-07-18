@@ -45,19 +45,19 @@ export default function Users() {
         </Box>
       </div>
       <div className='my-4'>
-        <div className='mx-auto join w-1/3 grid grid-cols-2'>
-          <Button 
+        <div className='mx-auto join w-1/3 grid grid-cols-2 max-w-xs'>
+          <button 
             onClick={() => setCurrentPage(current => current -1)}
-            className={hasPrev ? "join-item btn btn-outline " : "join-item btn btn-outline btn-disabled"}>
+            className={hasPrev ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}>
             Previous
-          </Button>
-          <Button
+          </button>
+          <button
             onClick={() => setCurrentPage(current => current + 1)}
-            className={hasNext ? "join-item btn btn-outline" : "join-item btn btn-outline btn-disabled"}>
+            className={hasNext ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}>
             Next
-          </Button>
+          </button>
         </div>
-        <SimpleGrid columns={{sm: 2, md: 3}} className='mb-28'>
+        <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 4}} className='mb-28 mx-4 mt-4'>
           {!searchResults || searchResults.length < 1 ? (
             usersList.map(user => (
               <UserCard key={user.id} user={user}/>
