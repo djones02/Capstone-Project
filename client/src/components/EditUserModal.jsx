@@ -25,11 +25,11 @@ export default function EditUserModal({isOpen, onOpen, onClose, handleUserUpdate
                 size="xl"
                 closeOnOverlayClick={false}>
                 <ModalOverlay>
-                    <ModalContent>
-                        <ModalHeader>
+                    <ModalContent backgroundColor={"#483D3F"} marginTop={"120px"}>
+                        <ModalHeader color={"#F5F5F5"} fontSize={'3xl'} textAlign={"center"}>
                             Edit User
                         </ModalHeader>
-                        <ModalCloseButton/>
+                        <ModalCloseButton className='text-white'/>
                         <ModalBody pb={6}>
                             <EditUser user={user} onClose={onClose} handleUserUpdate={handleUserUpdate}/>
                         </ModalBody>

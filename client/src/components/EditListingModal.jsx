@@ -25,11 +25,11 @@ export default function EditListingModal({isOpen, onOpen, onClose, handleListing
                 size="xl"
                 closeOnOverlayClick={false}>
                 <ModalOverlay>
-                    <ModalContent>
-                        <ModalHeader>
+                    <ModalContent backgroundColor={"#483D3F"} marginTop={"120px"}>
+                        <ModalHeader color={"#F5F5F5"} fontSize={'3xl'} textAlign={"center"}>
                             Edit Listing
                         </ModalHeader>
-                        <ModalCloseButton/>
+                        <ModalCloseButton className='text-white'/>
                         <ModalBody pb={6}>
                             <ListingEdit listing={listing} onClose={onClose} handleListingUpdate={handleListingUpdate}/>
                         </ModalBody>

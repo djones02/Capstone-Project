@@ -52,16 +52,17 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
       <form
         onSubmit={formik.handleSubmit}
         method="post"
-        className='w-full max-w-sm mx-auto bg-white p-8 rounded-md'>
+        className='w-full max-w-sm mx-auto bg-black rounded-md'>
         <div className='flex justify-end place-items-end'>
-          <Button
+          <button
             size="md"
+            className='btn btn-sm mt-4 mb-4 rounded-full border-white w-[155px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'
             onClick={handleDelete}>
             Delete Listing
-          </Button>
+          </button>
         </div>
         <div className='mb-2'>
-          <label htmlFor='name' className='block text-sm font-bold mb-2'>
+          <label htmlFor='name' className='block text-sm font-bold mb-2 text-white'>
             Name
           </label>
           <Input
@@ -70,12 +71,12 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.name}
-            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
           />
-          {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+          {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
         </div>
         <div className='mb-2'>
-          <label htmlFor='quality' className='block text-sm font-bold mb-2'>
+          <label htmlFor='quality' className='block text-sm font-bold mb-2 mt-4 text-white'>
             Quality
           </label>
           <Input
@@ -84,12 +85,12 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.quality}
-            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
           />
-          {formik.errors.quality ? <div>{formik.errors.quality}</div> : null}
+          {formik.errors.quality ? <div className='text-white'>{formik.errors.quality}</div> : null}
         </div>
         <div className='mb-2'>
-          <label htmlFor='price' className='block text-sm font-bold mb-2'>
+          <label htmlFor='price' className='block text-sm font-bold mb-2 mt-4 text-white'>
             Price
           </label>
           <Input
@@ -98,12 +99,12 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.price}
-            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
           />
-          {formik.errors.price ? <div>{formik.errors.price}</div> : null}
+          {formik.errors.price ? <div className='text-white'>{formik.errors.price}</div> : null}
         </div>
         <div className='mb-2'>
-          <label htmlFor='picture' className='block text-sm font-bold mb-2'>
+          <label htmlFor='picture' className='block text-sm font-bold mb-2 mt-4 text-white'>
             Picture
           </label>
           <Input
@@ -112,12 +113,12 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.picture}
-            className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
           />
-          {formik.errors.picture ? <div>{formik.errors.picture}</div> : null}
+          {formik.errors.picture ? <div className='text-white'>{formik.errors.picture}</div> : null}
         </div>
         <div className='mb-2'>
-          <label htmlFor='description' className='block text-sm font-bold mb-2'>
+          <label htmlFor='description' className='block text-sm font-bold mb-2 mt-4 text-white'>
             Description
           </label>
           <Textarea 
@@ -125,19 +126,20 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             value={formik.values.description}
             onChange={formik.handleChange}
             size="sm"
+            className='text-white'
           />
-          {formik.errors.description ? (<div>{formik.errors.description}</div>) : null}
+          {formik.errors.description ? (<div className='text-white'>{formik.errors.description}</div>) : null}
         </div>
 
-        <div className='flex justify-around'>
+        <div className='flex justify-around mt-8'>
           <button 
-            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            className='btn btn-sm rounded-full border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300'
             type='submit'>
             Save
           </button>
           <button 
             type="button"
-            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            className='btn btn-sm rounded-full border-white w-[125px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'
             onClick={onClose}>
             Cancel
           </button>
