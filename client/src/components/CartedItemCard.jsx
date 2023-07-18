@@ -4,7 +4,7 @@ import { CloseButton, Flex, Link, Select, useColorModeValue, Button, Input } fro
 import CartItemMeta from './CartItemMeta'
 import PriceTag from './PriceTag'
 import {Navigate, redirect, useNavigate} from "react-router-dom";
-
+import { AddIcon, MinusIcon } from "@chakra-ui/icons"
 
 export default function CartedItemCard({item}) {
     const [cartedItemData, setCartedItemData] = useState(null)
@@ -75,11 +75,13 @@ export default function CartedItemCard({item}) {
                     onChange={handleAmountChange}
                     size="sm"
                     width="20%"
+                    borderRadius={"full"}
+                    className='text-white mx-2'
                 />
-                <Button onClick={handleDecrement}>-</Button>
-                <Button onClick={handleIncrement}>+</Button>
+                <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleDecrement}><MinusIcon/></button>
+                <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleIncrement}><AddIcon/></button>
                 <PriceTag price={cartedItemData.price} />
-                <CloseButton aria-label={`Delete ${cartedItemData.name} from cart`} onClick={handleDelete}/>
+                <CloseButton className='text-white' aria-label={`Delete ${cartedItemData.name} from cart`} onClick={handleDelete}/>
             </Flex>
             <Flex
                 mt="4"
@@ -91,7 +93,7 @@ export default function CartedItemCard({item}) {
                     md: 'none',
                 }}
             >
-                <Link fontSize="sm" textDecor="underline" onClick={handleDelete}>
+                <Link color={"#F5F5F5"} fontSize="sm" textDecor="underline" onClick={handleDelete}>
                     Delete
                 </Link>
                 <Input 
@@ -100,7 +102,9 @@ export default function CartedItemCard({item}) {
                     value={selectedAmount}
                     onChange={handleAmountChange}
                     size="sm"
-                    width="20%"
+                    width="15%"
+                    className='text-white'
+                    borderRadius={"full"}
                 />
                 <Button onClick={handleDecrement}>-</Button>
                 <Button onClick={handleIncrement}>+</Button>

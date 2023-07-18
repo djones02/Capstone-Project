@@ -32,14 +32,11 @@ export default function PriceTag(props) {
 
 const Price = (props) => {
     const { isOnSale, children, textProps } = props
-    const defaultColor = mode('gray.700', 'gray.400')
-    const onSaleColor = mode('gray.400', 'gray.700')
-    const color = isOnSale ? onSaleColor : defaultColor
     return (
         <Text
             as="span"
             fontWeight="medium"
-            color={color}
+            className='text-white'
             textDecoration={isOnSale ? 'line-through' : 'none'}
             {...textProps}
         >

@@ -14,7 +14,7 @@ import { FiGift } from 'react-icons/fi'
 export default function CartItemMeta(props) {
     const { isGiftWrapping = true, picture, name, description} = props
     return (
-        <Stack direction="row" spacing="5" width="full">
+        <Stack direction="row" spacing="4" width="full">
             <Image 
                 rounded="lg"
                 width="120px"
@@ -24,16 +24,18 @@ export default function CartItemMeta(props) {
                 alt={name}
                 draggable="false"
                 loading="lazy"
+                mr={2}
+                style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}
             />
-            <Box pt="4">
-                <Stack spacing="0.5">
-                    <Text fontWeight="medium">{name}</Text>
-                    <Text color={mode('gray.600', 'gray.400')} fontSize="sm">
+            <Box>
+                <Stack spacing="1">
+                    <Text className='text-white font-black text-2xl'>{name}</Text>
+                    <Text className='text-white text-sm'>
                         {description}
                     </Text>
                 </Stack>
                 {isGiftWrapping && (
-                    <HStack spacing="1" mt="3" color={mode('gray.600', 'gray.400')}>
+                    <HStack spacing="1" mt="3" className='text-white'>
                         <Icon as={FiGift} boxSize="4" />
                         <Link fontSize="sm" textDecoration="underline">
                             Add gift wrapping
