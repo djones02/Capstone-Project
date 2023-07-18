@@ -101,7 +101,7 @@ export default function Navbar({user, onLogout, toggleSignup}) {
               <div className='dropdown dropdown-end mx-4'>
                 <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
                   <div className="w-16 rounded-full transform transition-transform hover:scale-110">
-                    <img src={"https://placekitten.com/100/100"}/>
+                    <img src={user?.pfp}/>
                   </div>
                 </label>
                 <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'>

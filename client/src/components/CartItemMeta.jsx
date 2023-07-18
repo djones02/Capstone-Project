@@ -25,6 +25,7 @@ export default function CartItemMeta(props) {
                 draggable="false"
                 loading="lazy"
                 mr={2}
+                bg={"#483D3F"}
                 style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}
             />
             <Box>

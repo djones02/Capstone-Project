@@ -90,11 +90,15 @@ export default function UserById() {
         </SimpleGrid>
       </Container>
       <Container maxW={"8xl"}>
-        <SimpleGrid columns={{sm: 1, md: 2, lg:3, xl:4}}>
-          {userListings.map(listing => (
-            <ListingCard key={listing.id} listing={listing}/>
-          ))}
-        </SimpleGrid>
+        {userListings.length > 0 ? (
+          <SimpleGrid columns={{sm: 1, md: 2, lg:3, xl:4}}>
+            {userListings.map(listing => (
+              <ListingCard key={listing.id} listing={listing}/>
+            ))}
+          </SimpleGrid>
+        ) : (
+          <p className='text-white'>"No Listings Yet"</p>
+        )}
       </Container>
     </div>
   )
