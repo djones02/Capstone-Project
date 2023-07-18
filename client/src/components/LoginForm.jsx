@@ -48,6 +48,7 @@ export default function LoginForm({onLogin}) {
         <form
             onSubmit={event => handleSubmit(event)}
             className='1-full max-w-sm mx-auto bg-black p-8 rounded-md shadow-md'>
+            <p className='text-white text-3xl text-center mb-4'>Log In</p>
             <div className='mt-2'>
                 <label
                     className='block text-sm text-white font-bold mb-2'
@@ -60,8 +61,10 @@ export default function LoginForm({onLogin}) {
                     type="text"
                     onChange={handleChange}
                     value={loginForm.email}
+                    placeholder='Enter Email'
                     autoComplete='email'
                     color={"white"}
+                    borderRadius={"full"}
                     className='w-full px-3 py-2 border border-gray-300 rounded-md hover:outline-dark_blue '
                 />
             </div>
@@ -81,13 +84,14 @@ export default function LoginForm({onLogin}) {
                         name="password"
                         id='password'
                         color={"white"}
+                        borderRadius={"full"}
                         autoComplete="current-password"
                         className='hover:outline-dark_blue'
                     />
                     <InputRightElement width="4.5rem">
                         <button 
                             type="button"
-                            className="btn btn-sm h-[40px] w-[74px] bg-dark_blue text-white hover:bg-light_blue"
+                            className="btn btn-sm h-[40px] w-[74px] rounded-full bg-dark_blue text-white hover:bg-light_blue"
                             onClick={handleClick}>
                             {display ? "Hide" : "Show"}
                         </button>
@@ -96,7 +100,7 @@ export default function LoginForm({onLogin}) {
             </div>
             <div className='flex justify-around mt-8'>
                 <button
-                    className='btn btn-sm rounded-2xl border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300'
+                    className='btn btn-sm rounded-full border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300'
                     type="submit">
                     Login
                 </button>

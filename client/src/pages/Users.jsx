@@ -48,11 +48,13 @@ export default function Users() {
         <div className='mx-auto join w-1/3 grid grid-cols-2 max-w-xs'>
           <button 
             onClick={() => setCurrentPage(current => current -1)}
+            style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
             className={hasPrev ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}>
             Previous
           </button>
           <button
             onClick={() => setCurrentPage(current => current + 1)}
+            style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
             className={hasNext ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}>
             Next
           </button>

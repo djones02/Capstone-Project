@@ -59,6 +59,7 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
       <div className='flex justify-end place-items-end'>
         <button
           size="md"
+          type='button'
           onClick={handleDelete}
           className='btn btn-sm mb-4 rounded-full border-white w-[155px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'>
           Delete Profile
@@ -117,7 +118,7 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
               URL.createObjectURL(event.currentTarget.files[0]),
             )
           }
-          className="block text-white w-full cursor-pointer bg-gray-50 border border-gray-300 focus:outline-none focus:border-transparent text-sm rounded-full file:mr-4 file:py-2 file:px-4 file:bg-indigo-600 file:text-white file:rounded-md file:border-none"
+          className="block text-white w-full cursor-pointer bg-gray-50 border border-gray-300 focus:outline-none focus:border-transparent text-sm rounded-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-dark_blue file:text-white file:rounded-md file:border-none"
         />
         {formik.errors.pfp ? (
           <div className='text-white'>{formik.errors.pfp}</div>

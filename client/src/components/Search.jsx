@@ -7,7 +7,7 @@ export default function Search({handleSearch}) {
     handleSearch(event.target.value);
   }
   return (
-    <InputGroup className='bg-white rounded-full ml-6 my-6'>
+    <InputGroup className='bg-white rounded-full ml-6 my-6' style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}>
       <Input
         placeholder='Search...'
         onChange={event => handleChange(event)}

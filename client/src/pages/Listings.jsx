@@ -66,26 +66,28 @@ export default function Listings() {
           <Box>
             <button 
               style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
-              className='btn btn-sm rounded-2xl border-none w-[175px] h-[40px] bg-black text-white text-sm font-bold my-10 mx-6 py-2 px-4 rounded-md hover:bg-gray transition duration-300'
+              className='btn btn-sm rounded-full border-none w-[175px] h-[40px] bg-black text-white text-sm font-bold my-10 mx-6 py-2 px-4 hover:bg-gray transition duration-300'
               onClick={toggleShowInputs}>
               {showInputs ? "Add New Listing" : "Add New Listing"}
             </button>
           </Box>
           <Box>
-            <InputGroup mt={4} width={{base: "90%", md: "md"}} textAlign={"center"}>
+            <InputGroup mt={4} width={{base: "90%", md: "md"}} textAlign={"center"} >
               <Search handleSearch={handleSearch}/>
             </InputGroup>
           </Box>
         </Flex>
       </div>
       <div className='my-4'>
-        <div className='mx-auto join w-1/3 grid grid-cols-2 max-w-xs'>
+        <div className='mx-auto join w-1/3 grid grid-cols-2 max-w-xs' >
           <button
+            style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
             className={hasPrev ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}
             onClick={() => setCurrentPage(current => current -1)}>
             Previous
           </button>
           <button 
+            style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
             className={hasNext ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline disabled border-white bg-black text-white rounded-full"}
             onClick={() => setCurrentPage(current => current + 1)}>
             Next

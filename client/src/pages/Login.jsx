@@ -21,7 +21,7 @@ export default function Login({onLogin}) {
               <b className='text-white'>Need an account? &nbsp;</b>
               <button
                 style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
-                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-black hover:bg-gray text-white rounded-xl'
+                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-black hover:bg-gray text-white rounded-full'
                 onClick={() => setShowLogin(false)}>
                 Sign Up
               </button>
@@ -36,7 +36,7 @@ export default function Login({onLogin}) {
               <b className='text-white'>Already have an account? &nbsp;</b>
               <button
                 style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
-                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-black hover:bg-gray text-white rounded-xl'
+                className='mx-2 w-[100px] h-[40px] border-none btn btn-sm bg-black hover:bg-gray text-white rounded-full'
                 onClick={() => setShowLogin(true)}>
                 Log In
               </button>

@@ -93,9 +93,7 @@ export default function CartedItemCard({item}) {
                     md: 'none',
                 }}
             >
-                <Link color={"#F5F5F5"} fontSize="sm" textDecor="underline" onClick={handleDelete}>
-                    Delete
-                </Link>
+                <CloseButton className='text-white' aria-label={`Delete ${cartedItemData.name} from cart`} onClick={handleDelete}/>
                 <Input 
                     type="number"
                     min="1"
@@ -106,8 +104,8 @@ export default function CartedItemCard({item}) {
                     className='text-white'
                     borderRadius={"full"}
                 />
-                <Button onClick={handleDecrement}>-</Button>
-                <Button onClick={handleIncrement}>+</Button>
+                <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleDecrement}><MinusIcon/></button>
+                <button style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}} className='btn btn-sm rounded-full text-white font-black bg-black hover:bg-gray transition duration-300 border-none mx-2' onClick={handleIncrement}><AddIcon/></button>
                 <PriceTag price={cartedItemData.price}/>
             </Flex>
         </Flex>

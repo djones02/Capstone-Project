@@ -235,7 +235,7 @@ export default function Profile() {
               ))}
             </SimpleGrid>
           ) : (
-            <p>"No Listings Yet"</p>
+            <p className='text-white'>"No Listings Yet"</p>
           )}
         </div>
         <div>
@@ -264,7 +264,7 @@ export default function Profile() {
                 ) : (
                   <tr>
                     <td>
-                      <p>"No Orders Yet"</p>
+                      <p className='text-white'>"No Orders Yet"</p>
                     </td>
                   </tr>
                 )}
