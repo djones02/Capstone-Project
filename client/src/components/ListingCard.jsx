@@ -166,11 +166,11 @@ export default function ListingCard({listing}) {
                         </Flex>
                         <Flex>
                             <Link to={`/listings/${listing.id}`}>
-                                <button className='btn btn-sm rounded-2xl border-white w-[150px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2'>
+                                <button className='btn btn-sm rounded-full border-white w-[150px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300 mx-2'>
                                     Get More Info
                                 </button>
                             </Link>
-                            <button className='btn btn-sm rounded-2xl border-white w-[130px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2' 
+                            <button className='btn btn-sm rounded-full border-white w-[130px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300 mx-2' 
                                 onClick={handleAddToCart}>
                                 {isAdded ? "In Cart" : "Add to Cart"}
                             </button>

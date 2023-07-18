@@ -53,7 +53,7 @@ export default function Signup({onLogin, toggleShowLogin}) {
     .then(response => response.json())
     .then(newUser => {
       // onLogin(newUser)
-      navigate("/home")
+      navigate("../home")
     })
   }
   const formik = useFormik({
@@ -76,6 +76,7 @@ export default function Signup({onLogin, toggleShowLogin}) {
         method='post'
         className='w-full max-w-sm mx-auto bg-black p-8 rounded-md shadow-md'
       >
+        <p className='text-white text-3xl text-center mb-4'>Sign Up</p>
         <div className='mb-2'>
           <label style={{color: "white"}} htmlFor='firstName' className='block text-sm font-bold mb-2'>
             Name
@@ -84,9 +85,11 @@ export default function Signup({onLogin, toggleShowLogin}) {
             id='name'
             name='name'
             type='text'
+            placeholder='Enter Name'
             onChange={formik.handleChange}
             value={formik.values.name}
             color={"white"}
+            borderRadius={"full"}
             className='w-full px-3 py-2 border border-white hover:outline-dark_blue rounded-md focus:outline-none focus:border-indigo-500'
           />
           {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
@@ -99,9 +102,11 @@ export default function Signup({onLogin, toggleShowLogin}) {
             id='email'
             name='email'
             type='email'
+            placeholder='Enter Email'
             onChange={formik.handleChange}
             value={formik.values.email}
             color={"white"}
+            borderRadius={"full"}
             className='w-full px-3 py-2 border border-white hover:outline-dark_blue rounded-md focus:outline-none focus:border-indigo-500'
           />
           {formik.errors.email ? <div className='text-white'>{formik.errors.email}</div> : null}
@@ -119,13 +124,16 @@ export default function Signup({onLogin, toggleShowLogin}) {
               placeholder='Enter Password'
               onChange={formik.handleChange}
               value={formik.values.password}
+              color={"white"}
+              borderRadius={"full"}
               className="border border-white hover:outline-dark_blue"
             />
             <InputRightElement width="4.5rem">
               <button
                 size="md"
                 onClick={handleClick}
-                className="btn btn-sm h-[40px] w-[74px] bg-dark_blue text-white hover:bg-light_blue"
+                type='button'
+                className="btn btn-sm h-[40px] w-[74px] bg-dark_blue rounded-full text-white hover:bg-light_blue"
               >
                 {show ? "Hide" : "Show"}
               </button>
@@ -149,7 +157,8 @@ export default function Signup({onLogin, toggleShowLogin}) {
             }
             paddingInlineStart={"none"}
             paddingInlineEnd={"none"}
-            className="block w-full cursor-pointer bg-gray border-none border-white text-white hover:outline-dark_blue focus:border-dark_blue text-sm rounded-lg pe-0 file:mr-4 file:py-2 file:px-4 file:bg-dark_blue file:text-white file:rounded-md file:border-white file:border file:h-[39px]"
+            borderRadius={"full"}
+            className="block w-full cursor-pointer bg-gray border-none border-white text-white hover:outline-dark_blue focus:border-dark_blue text-sm rounded-lg pe-0 file:mr-4 file:py-2 file:px-4 file:bg-dark_blue file:text-white file:border-none file:rounded-full file:h-[39px]"
           />
           {formik.errors.pfp ? <div>{formik.errors.pfp}</div> : null}
         </div>
@@ -157,16 +166,14 @@ export default function Signup({onLogin, toggleShowLogin}) {
           <button
             type='button'
             onClick={toggleShowLogin}
-            className='btn btn-sm rounded-2xl border-white w-[125px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_red transition duration-300'
+            className='btn btn-sm rounded-full border-white w-[125px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'
           >
             Cancel
           </button>
           <button 
-            className='btn btn-sm rounded-2xl border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300'
+            className='btn btn-sm rounded-full border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300'
             type='submit'
-            disabled={navigation.state === "submitting"}
           >
-            {navigation.state === "submitting" && <Spinner />}
             Save
           </button>
         </div>
