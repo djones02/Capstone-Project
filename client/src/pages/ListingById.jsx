@@ -143,6 +143,7 @@ export default function ListingById() {
             w={'100%'}
             h={{ base: '100%', sm: '400px', md: '500px' }}
             mt={24}
+            bg={"#483D3F"}
             style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}}
           />
         </Flex>

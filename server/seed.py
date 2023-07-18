@@ -1,4 +1,5 @@
 from faker import Faker
+import random
 from app import app
 from flask_sqlalchemy import SQLAlchemy
 from config import db
@@ -9,6 +10,7 @@ fake = Faker()
 
 def create_data():
     with app.app_context():
+        Order.query.delete()
         Order_Item.query.delete()
         User.query.delete()
         Listing.query.delete()
@@ -18,7 +20,7 @@ def create_data():
 
     with app.app_context():
         password = "password1!"
-        main = User(email="djones@gmail.com", name="David", pfp="https://placekitten.com/150/150")
+        main = User(email="djones@gmail.com", name="David", pfp="https://images.unsplash.com/photo-1520116468816-95b69f847357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGNhciUyMHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fHww&auto=format&fit=crop&w=700&q=60")
         main.password_hash = password
         db.session.add(main)
         db.session.commit()
@@ -32,10 +34,16 @@ def create_data():
                 lower_case=True,
                 digits=True
             )
+            pfps = [
+                "https://images.unsplash.com/photo-1541443131876-44b03de101c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                "https://images.unsplash.com/photo-1520116468816-95b69f847357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGNhciUyMHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fHww&auto=format&fit=crop&w=700&q=60",
+                "https://images.unsplash.com/photo-1484136063621-1acbc3b4ec98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1353&q=80",
+                "https://images.unsplash.com/photo-1533416784636-2b0ccfea6b97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+            ]
             user = User(
                 email = fake.email(),
                 name = fake.name(),
-                pfp = "https://placekitten.com/150/150",
+                pfp = random.choice(pfps),
             )
             user.password_hash = password
             users.append(user)
@@ -46,12 +54,31 @@ def create_data():
     with app.app_context():
         # Create listings   
         listings = []
+        qualities = ["New", "Slightly Used", "Heavily Used"]
+        quality_price_ranges = {
+                "New": (10, 50),
+                "Slightly Used": (5,30),
+                "Heavily Used": (1,10)
+            }
+        pictures = ["https://www.firestonecompleteautocare.com/content/dam/bsro-sites/global/images/tires/full-180/PotenzaRE980AS+.png", "https://www.beleestore.com/331812/wp-content/uploads/images14/images/products/2/17/xqkgt1b2x1.jpg", "https://5.imimg.com/data5/IOS/Default/2022/6/XV/EY/ML/12838969/product-jpeg-500x500.png", "https://i.pinimg.com/originals/8e/9d/ee/8e9deeccba7b54b1b37b91b1d55a98f7.png"]
+        picture_names = ["Tire", "Battery", "Headlight", "Steering Wheel"]
+        picture_name_relations = {
+            "https://www.firestonecompleteautocare.com/content/dam/bsro-sites/global/images/tires/full-180/PotenzaRE980AS+.png": "Tire",
+            "https://www.beleestore.com/331812/wp-content/uploads/images14/images/products/2/17/xqkgt1b2x1.jpg": "Battery",
+            "https://5.imimg.com/data5/IOS/Default/2022/6/XV/EY/ML/12838969/product-jpeg-500x500.png": "Headlight",
+            "https://i.pinimg.com/originals/8e/9d/ee/8e9deeccba7b54b1b37b91b1d55a98f7.png": "Steering Wheel"
+        }
         for i in range(100):
+            quality = random.choice(qualities)
+            price_range = quality_price_ranges[quality]
+            price = random.randint(price_range[0], price_range[1])
+            picture = random.choice(pictures)
+            picture_relationship = picture_name_relations[picture]
             listing = Listing(
-                name = fake.word(),
-                quality = fake.word(),
-                price = fake.random_number(digits=2),
-                picture = "https://placekitten.com/150/150",
+                name = picture_relationship,
+                quality = quality,
+                price = price,
+                picture = picture,
                 description = fake.paragraph(nb_sentences=3, variable_nb_sentences=True),
                 amount = fake.random_int(min=10, max=50),
                 user_id = fake.random_int(min=0, max=49)

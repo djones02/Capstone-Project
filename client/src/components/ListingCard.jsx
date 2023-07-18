@@ -102,6 +102,7 @@ export default function ListingCard({listing}) {
                 className='bg-black'
                 style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}>
                 <Box
+                    p={6}
                     rounded={'lg'}
                     mt={-12}
                     pos={'relative'}
