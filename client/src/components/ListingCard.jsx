@@ -15,6 +15,7 @@ import {
     Text,
     Stack,
 } from "@chakra-ui/react"
+import { AddIcon, MinusIcon } from "@chakra-ui/icons"
 import {getCarts, addCart, addCartedItem} from "../features/helpers"
 export default function ListingCard({listing}) {
     const [user, setUser] = useState(null)
@@ -88,17 +89,18 @@ export default function ListingCard({listing}) {
         }
     }
     return (
-        <Center py={12}>
+        <Center className='py-8 px-4'>
             <Box
                 role={'group'}
                 p={6}
                 maxW={'330px'}
                 w={'full'}
-                bg={"gray.600"}
                 boxShadow={'2xl'}
                 rounded={'lg'}
                 pos={'relative'}
-                zIndex={1}>
+                zIndex={1}
+                className='bg-black'
+                style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}>
                 <Box
                     rounded={'lg'}
                     mt={-12}
@@ -131,22 +133,22 @@ export default function ListingCard({listing}) {
                     />
                 </Box>
                 <Stack pt={10} align={'center'}>
-                    <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                    <Text className='text-white text-sm' textTransform={'uppercase'}>
                         {listing.quality}
                     </Text>
-                    <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                    <Heading className='text-white' fontFamily={'body'} fontWeight={500}>
                         {listing.name}
                     </Heading>
                     <Stack direction={'row'} align={'center'}>
-                        <Text fontWeight={800} fontSize={'xl'}>
+                        <Text fontWeight={800} fontSize={'xl'} className='text-white'>
                             ${listing.price}
                         </Text>
-                        <Text textDecoration={'line-through'} color={'gray.800'}>
+                        <Text textDecoration={'line-through'} className='text-black.900'>
                             ${Math.round(listing.price * 1.2)}
                         </Text>
                     </Stack>
-                    <Stack direction="column" align="center" justify="center" mt={4}>
-                        <Flex justify="center">
+                    <Stack direction="column" align="center" justify="center" className='mt-2'>
+                        <Flex justify="center" className='mb-4'>
                             <Input 
                                 type="number"
                                 min="1"
@@ -154,19 +156,24 @@ export default function ListingCard({listing}) {
                                 onChange={handleAmountChange}
                                 size="sm"
                                 width="20%"
+                                borderRadius={"full"}
+                                borderColor={"white"}
+                                textColor={"white"}
+                                className='mx-2'
                             />
-                            <Button size="sm" rounded="full" onClick={handleDecrement}>-</Button>
-                            <Button size="sm" rounded="full" onClick={handleIncrement}>+</Button>
+                            <button className='btn btn-sm rounded-full text-white font-black bg-dark_red hover:bg-light_red transition duration-300 border-white mx-2' onClick={handleDecrement}><MinusIcon/></button>
+                            <button className='btn btn-sm rounded-full text-white font-black bg-dark_blue hover:bg-light_blue transition duration-300 border-white mx-2' onClick={handleIncrement}><AddIcon/></button>
                         </Flex>
                         <Flex>
                             <Link to={`/listings/${listing.id}`}>
-                                <Button size="sm">
+                                <button className='btn btn-sm rounded-2xl border-white w-[150px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2'>
                                     Get More Info
-                                </Button>
+                                </button>
                             </Link>
-                            <Button size="sm" onClick={handleAddToCart}>
+                            <button className='btn btn-sm rounded-2xl border-white w-[130px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2' 
+                                onClick={handleAddToCart}>
                                 {isAdded ? "In Cart" : "Add to Cart"}
-                            </Button>
+                            </button>
                         </Flex>
                     </Stack>
                 </Stack>

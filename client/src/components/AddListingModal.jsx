@@ -25,11 +25,11 @@ export default function AddListingModal({isOpen, onOpen, onClose, addNewListing}
         size="xl"
         closeOnOverlayClick={false}>
         <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>
+          <ModalContent backgroundColor={"#483D3F"} marginTop={"120px"}>
+            <ModalHeader color={"#F5F5F5"}>
               Create New Listing
             </ModalHeader>
-            <ModalCloseButton/>
+            <ModalCloseButton color={"#F5F5F5"}/>
             <ModalBody pb={6}>
               <AddListing onClose={onClose} addNewListing={addNewListing}/>
             </ModalBody>

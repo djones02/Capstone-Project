@@ -16,7 +16,8 @@ export default function Navbar({user, onLogout, toggleSignup}) {
   }
   return (
     <div 
-        className='navbar bg-black'>
+        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: '9999' }}
+        className='navbar bg-black p-0'>
           <div className='navbar-start'>
             {user ? (
               <div className='dropdown'>

@@ -35,7 +35,7 @@ export default function Users() {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen'>
       <div>
-        <Box>
+        <Box className='mt-24'>
           <InputGroup 
             mt={4}
             width={{base: "90%", md: "md"}}
@@ -57,7 +57,7 @@ export default function Users() {
             Next
           </Button>
         </div>
-        <SimpleGrid columns={{sm: 2, md: 3}}>
+        <SimpleGrid columns={{sm: 2, md: 3}} className='mb-28'>
           {!searchResults || searchResults.length < 1 ? (
             usersList.map(user => (
               <UserCard key={user.id} user={user}/>

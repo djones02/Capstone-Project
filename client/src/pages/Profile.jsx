@@ -127,6 +127,7 @@ export default function Profile() {
               align={'center'}
               w={{base:'100%', sm: "300px", md:"400px", lg: "500px"}}
               h={{ base: '100%', sm: '300px', md:"400px", lg: '500px' }}
+              className='mt-28'
             />
           </Flex>
           <Stack spacing={{ base: 6, md: 10 }}>
@@ -236,7 +237,7 @@ export default function Profile() {
             Orders To Fill
           </Text>
           <div className='overflow-x-auto'>
-            <table className='table'>
+            <table className='table mb-32'>
               <tbody>
                 {orderItems && orderItems.length > 0 ? (
                   orderItems.map(orderItem => (

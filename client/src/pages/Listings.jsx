@@ -52,7 +52,7 @@ export default function Listings() {
     }
   }
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen'>
+    <div className='flex flex-col items-center justify-center min-h-screen pt-20'>
       {showInputs && (
         <AddListingModal 
           isOpen={showInputs}
@@ -64,9 +64,12 @@ export default function Listings() {
       <div>
         <Flex>
           <Box>
-            <Button onClick={toggleShowInputs}>
+            <button 
+              style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+              className='btn btn-sm rounded-2xl border-none w-[175px] h-[40px] bg-black text-white text-sm font-bold my-10 mx-6 py-2 px-4 rounded-md hover:bg-gray transition duration-300'
+              onClick={toggleShowInputs}>
               {showInputs ? "Add New Listing" : "Add New Listing"}
-            </Button>
+            </button>
           </Box>
           <Box>
             <InputGroup mt={4} width={{base: "90%", md: "md"}} textAlign={"center"}>
@@ -77,18 +80,18 @@ export default function Listings() {
       </div>
       <div className='my-4'>
         <div className='mx-auto join w-1/3 grid grid-cols-2'>
-          <Button
-            className={hasPrev ? "join-item btn-outline" : "join-item btn btn-outline btn-disabled"}
+          <button
+            className={hasPrev ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline btn-disabled border-white bg-black text-white rounded-full"}
             onClick={() => setCurrentPage(current => current -1)}>
             Previous
-          </Button>
-          <Button 
-            className={hasNext ? "join-item btn btn-outline" : "join-item btn btn-outline disabled"}
+          </button>
+          <button 
+            className={hasNext ? "join-item btn btn-outline border-white bg-black text-white rounded-full" : "join-item btn btn-outline disabled border-white bg-black text-white rounded-full"}
             onClick={() => setCurrentPage(current => current + 1)}>
             Next
-          </Button>
+          </button>
         </div>
-        <SimpleGrid columns={{sm: 2, md: 3}}>
+        <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 4}} className='mx-4 mb-24 mt-4'>
           {!searchResults || searchResults.length < 1 ? (
             listingsList.map(listing => (
               <ListingCard key={listing.id} listing={listing}/>

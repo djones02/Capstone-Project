@@ -74,7 +74,7 @@ export default function Signup({onLogin, toggleShowLogin}) {
       <form
         onSubmit={formik.handleSubmit}
         method='post'
-        className='w-full max-w-sm mx-auto bg-gray p-8 rounded-md shadow-md'
+        className='w-full max-w-sm mx-auto bg-black p-8 rounded-md shadow-md'
       >
         <div className='mb-2'>
           <label style={{color: "white"}} htmlFor='firstName' className='block text-sm font-bold mb-2'>

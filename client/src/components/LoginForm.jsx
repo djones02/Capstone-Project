@@ -47,7 +47,7 @@ export default function LoginForm({onLogin}) {
         <div className='mt-20 rounded-md' style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}>
         <form
             onSubmit={event => handleSubmit(event)}
-            className='1-full max-w-sm mx-auto bg-gray p-8 rounded-md shadow-md'>
+            className='1-full max-w-sm mx-auto bg-black p-8 rounded-md shadow-md'>
             <div className='mt-2'>
                 <label
                     className='block text-sm text-white font-bold mb-2'
