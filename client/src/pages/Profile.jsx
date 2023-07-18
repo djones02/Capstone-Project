@@ -151,7 +151,7 @@ export default function Profile() {
                 {!showForm ? (
                   <button
                     style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
-                    className='btn btn-sm rounded-full border-none w-[125px] h-[40px] bg-black text-white text-sm font-bold py-2 px-4 hover:bg-gray transition duration-300'
+                    className='btn btn-sm rounded-full border-none w-[125px] h-[50px] bg-black text-white text-sm font-bold py-2 px-4 hover:bg-gray transition duration-300'
                     onClick={toggleShowForm}>
                     Edit User
                   </button>

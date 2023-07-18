@@ -76,10 +76,10 @@ export default function Cart() {
         className='mt-24'
       >
         <Stack spacing={{base:"8", md:"10"}} flex="2">
-          <Heading fontSize="2xl" fontWeight="extrabold">
+          <Heading className='text-white' fontSize="2xl" fontWeight="extrabold">
             Shopping Cart ({(cartedItemsList.length)})
           </Heading>
-          <Stack spacing="6">
+          <Stack spacing="10">
           {cartedItemsList.map((item) => {
             return <CartedItemCard key={item.id} item={item} />
           })}
@@ -87,7 +87,7 @@ export default function Cart() {
         </Stack>
         <Flex direction="column" align="center" flex="1">
           <CartOrderSummary cartedItemsList={cartedItemsList}/>
-          <HStack mt="6" fontWeight="semibold" className='mb-28'>
+          <HStack mt="6" fontWeight="semibold" className='mb-28 text-white'>
             <p>or</p>
             <Link to="/listings" >Continue Shopping</Link>
           </HStack>

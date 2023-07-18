@@ -17,10 +17,10 @@ const OrderSummaryItem = (props) => {
     const {label, value, children} = props
     return (
         <Flex justify="space-between" fontSize="sm">
-            <Text fontWeight="medium" color={mode('gray.600', 'gray.400')}>
+            <Text fontWeight="medium" className='text-white'>
                 {label}
             </Text>
-            {value ? <Text fontWeight="medium">{value}</Text> : children}
+            {value ? <Text className='text-white' fontWeight="medium">{value}</Text> : children}
         </Flex>
     )
 }
@@ -79,32 +79,32 @@ export default function CartOrderSummary({cartedItemsList}) {
         }
     }
     return (
-        <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
-            <Heading size="md">Order Summary</Heading>
+        <Stack style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}} spacing="8" rounded="lg" padding="8" width="full" className='bg-black'>
+            <Heading className='text-white text-lg'>Order Summary</Heading>
             <Stack spacing="6">
                 <OrderSummaryItem label="Subtotal" value={formatPrice(price)}/>
                 <OrderSummaryItem label="Shipping + Tax">
-                    <Link href="#" textDecor="underline">
+                    <Link color={"#F5F5F5"} href="#" textDecor="underline">
                         Calculate Shipping
                     </Link>
                 </OrderSummaryItem>
                 <OrderSummaryItem label="Coupon Code">
-                    <Link href="#" textDecor="underline">
+                    <Link color={"#F5F5F5"} href="#" textDecor="underline">
                         Add coupon code
                     </Link>
                 </OrderSummaryItem>
                 <Flex justify="space-between">
-                    <Text fontSize="lg" fontWeight="semibold">
+                    <Text className='text-white' fontSize="lg" fontWeight="semibold">
                         Total
                     </Text>
-                    <Text fontSize="xl" fontWeight="extrabold">
+                    <Text className='text-white' fontSize="xl" fontWeight="extrabold">
                         {formatPrice(price)}
                     </Text>
                 </Flex>
             </Stack>
-            <Button colorScheme="blue" size="lg" fontSize="md" rightIcon={<FaArrowRight />} onClick={handleCheckout}>
+            <button className='btn btn-sm rounded-full border-white w-full h-[50px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300 mx-2' rightIcon={<FaArrowRight />} onClick={handleCheckout}>
                 Checkout
-            </Button>
+            </button>
         </Stack>
     )
 }
