@@ -57,17 +57,17 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className='flex justify-end place-items-end'>
-        <Button
+        <button
           size="md"
           onClick={handleDelete}
-        >
+          className='btn btn-sm mb-4 rounded-full border-white w-[155px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'>
           Delete Profile
-        </Button>
+        </button>
       </div>
       <div className="mb-2">
         <label
           htmlFor="firstName"
-          className="block text-sm font-bold mb-2">
+          className="block text-sm text-white font-bold mb-2">
           Name
         </label>
         <Input
@@ -77,14 +77,15 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
           style={{borderWidth:"2px",}}
           onChange={formik.handleChange}
           value={formik.values.name}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          borderRadius={"full"}
+          className="w-full text-white px-3 py-2 border border-gray-300 focus:outline-none focus:border-indigo-500"
         />
-        {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+        {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
       </div>
-      <div className="mb-2">
+      <div className="mb-2 mt-4">
         <label
           htmlFor="email"
-          className="block text-sm font-bold mb-2">
+          className="block text-white text-sm font-bold mb-2">
           Email
         </label>
         <Input
@@ -94,14 +95,15 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
           style={{borderWidth:"2px",}}
           onChange={formik.handleChange}
           value={formik.values.email}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          borderRadius={"full"}
+          className="w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
         />
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+        {formik.errors.email ? <div className='text-white'>{formik.errors.email}</div> : null}
       </div>
-      <div className="mb-2">
+      <div className="mb-2 mt-4">
         <label
           htmlFor="profilePicture"
-          className="block text-sm font-bold mb-2">
+          className="block text-white text-sm font-bold mb-2">
           Image
         </label>
         <input
@@ -115,21 +117,21 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
               URL.createObjectURL(event.currentTarget.files[0]),
             )
           }
-          className="block w-full cursor-pointer bg-gray-50 border border-gray-300 focus:outline-none focus:border-transparent text-sm rounded-lg file:mr-4 file:py-2 file:px-4 file:bg-indigo-600 file:text-white file:rounded-md"
+          className="block text-white w-full cursor-pointer bg-gray-50 border border-gray-300 focus:outline-none focus:border-transparent text-sm rounded-full file:mr-4 file:py-2 file:px-4 file:bg-indigo-600 file:text-white file:rounded-md file:border-none"
         />
         {formik.errors.pfp ? (
-          <div>{formik.errors.pfp}</div>
+          <div className='text-white'>{formik.errors.pfp}</div>
         ) : null}
       </div>
-      <div className='flex justify-around'>
+      <div className='flex justify-center mt-8'>
           <button 
-            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            className='btn btn-sm mx-6 rounded-full border-white w-[125px] h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300'
             type='submit'>
             Save
           </button>
           <button 
             type="button"
-            className='w-[125px] bg-indigo-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-400 transition duration-300'
+            className='btn btn-sm mx-6 rounded-full border-white w-[125px] h-[40px] bg-dark_red text-white text-sm font-bold py-2 px-4 hover:bg-light_red transition duration-300'
             onClick={onClose}>
             Cancel
           </button>

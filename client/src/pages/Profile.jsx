@@ -117,10 +117,11 @@ export default function Profile() {
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
-          py={{ base: 18, md: 24 }}>
+          py={{ base: 18, md: 24 }}
+          px={{ base: 18, md: 24 }}>
           <Flex>
             <Image
-              rounded={'md'}
+              rounded={'full'}
               alt={'product image'}
               src={user?.pfp ? user?.pfp : "https://placekitten.com/250/250"}
               fit={'cover'}
@@ -128,30 +129,34 @@ export default function Profile() {
               w={{base:'100%', sm: "300px", md:"400px", lg: "500px"}}
               h={{ base: '100%', sm: '300px', md:"400px", lg: '500px' }}
               className='mt-28'
+              style={{boxShadow:"4px 6px 15px rgba(0, 0, 0, 1)"}}
             />
           </Flex>
-          <Stack spacing={{ base: 6, md: 10 }}>
+          <Stack spacing={{ base: 6, md: 10 }} justifyContent={"space-around"}>
             <Box as={'header'}>
               <Heading
+                className='text-white'
                 lineHeight={1.1}
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
                 {user?.name.toUpperCase() || "name would go here"}
               </Heading>
               <Text
+                className='text-white mb-6'
                 fontWeight={300}
                 fontSize={'2xl'}>
                 {user?.email || "email goes here"}
               </Text>
               <div>
                 {!showForm ? (
-                  <Button onClick={toggleShowForm}>
+                  <button
+                    style={{boxShadow:"4px 5px 15px rgba(0, 0, 0, 1)"}}
+                    className='btn btn-sm rounded-full border-none w-[125px] h-[40px] bg-black text-white text-sm font-bold py-2 px-4 hover:bg-gray transition duration-300'
+                    onClick={toggleShowForm}>
                     Edit User
-                  </Button>
+                  </button>
                 ) : (
-                  <Button onClick={toggleShowForm}>
-                    Cancel Edit
-                  </Button>
+                  null
                 )}
               </div>
             </Box>
@@ -160,11 +165,11 @@ export default function Profile() {
       </Container>
       <Container maxW="1000px" mt={6}>
         <div>
-          <Text className="text-center font-bold" fontSize={50}>
+          <Text className="text-center font-bold text-white" fontSize={50}>
             Listings
           </Text>
           {userListings.length > 0 ? (
-            <SimpleGrid columns={[2, null, 3]} spacing="40px" className='mt-4'>
+            <SimpleGrid columns={{sm:1, md:2, lg:3}} spacing="40px" className='mt-4'>
               {userListings.map(listing => (
                 <Center py={12} key={listing.id}>
                   <Box
@@ -172,11 +177,12 @@ export default function Profile() {
                       p={6}
                       maxW={'330px'}
                       w={'full'}
-                      bg={"gray.600"}
                       boxShadow={'2xl'}
                       rounded={'lg'}
                       pos={'relative'}
-                      zIndex={1}>
+                      zIndex={1}
+                      className='bg-black'
+                      style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}>
                       <Box
                           rounded={'lg'}
                           mt={-12}
@@ -209,17 +215,17 @@ export default function Profile() {
                           />
                       </Box>
                       <Stack pt={10} align={'center'}>
-                          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                          <Text className='text-white' fontSize={'sm'} textTransform={'uppercase'}>
                               {listing.quality}
                           </Text>
-                          <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                          <Heading className='text-white' fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
                               {listing.name}
                           </Heading>
                           <Stack direction={'row'} align={'center'}>
-                              <Text fontWeight={800} fontSize={'xl'}>
+                              <Text className='text-white' fontWeight={800} fontSize={'xl'}>
                                   ${listing.price}
                               </Text>
-                              <Text textDecoration={'line-through'} color={'gray.800'}>
+                              <Text className='text-black-900' textDecoration={'line-through'}>
                                   ${Math.round(listing.price * 1.2)}
                               </Text>
                           </Stack>
@@ -233,7 +239,7 @@ export default function Profile() {
           )}
         </div>
         <div>
-          <Text className='text-center font-bold' fontSize={50}>
+          <Text className='text-center font-bold text-white mb-6' fontSize={50}>
             Orders To Fill
           </Text>
           <div className='overflow-x-auto'>
@@ -243,15 +249,15 @@ export default function Profile() {
                   orderItems.map(orderItem => (
                     <tr key={orderItem.id}>
                       <td key={orderItem.id}>
-                        <Text key={orderItem.id}>
+                        <Text className='text-white mt-2' key={orderItem.id}>
                           <b>Posted On: </b>{orderItem.created_at}
                         </Text>
                         {orderItem?.listing ? (
-                          <Text><b>Name: </b>{orderItem?.listing.name}</Text>
+                          <Text className='text-white'><b>Name: </b>{orderItem?.listing.name}</Text>
                         ) : (
-                          <Text>No Listings Found</Text>
+                          <Text className='text-white'>No Listings Found</Text>
                         )}
-                        <Text><b>Amount: </b>{orderItem?.amount}</Text>
+                        <Text className='text-white mb-2'><b>Amount: </b>{orderItem?.amount}</Text>
                       </td>
                     </tr>
                   ))
