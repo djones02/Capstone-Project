@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 export default function Footer({user}) {
     return (
         <Box className='bg-black fixed inset-x-0 bottom-0 p-2'
-            style={{position:"fixed", left:0, right:0, bottom:0, zIndex:'9999'}}>
+            style={{position:"fixed", left:0, right:0, bottom:0, zIndex:'9999', boxShadow:"1px 5px 25px rgba(0, 0, 0, 1)"}}>
             <Container
                 as={Stack}
                 maxW={'6xl'}
@@ -23,8 +23,8 @@ export default function Footer({user}) {
                     {user ? (
                         <div>
                             <Link className='text-xl text-white hover:bg-gray px-6 py-2 rounded-xl' to="/home">Home</Link>
-                            <Link className='text-xl text-white hover:bg-gray px-6 py-2 rounded-xl' >About</Link>
-                            <Link className='text-xl text-white hover:bg-gray px-6 py-2 rounded-xl' >Contact</Link>
+                            <Link className='text-xl text-white hover:bg-gray px-6 py-2 rounded-xl' to="/about">About</Link>
+                            <Link className='text-xl text-white hover:bg-gray px-6 py-2 rounded-xl' to="/contact">Contact</Link>
                         </div>
                     ) : null}
                 </Stack>

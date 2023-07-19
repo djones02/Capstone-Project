@@ -123,7 +123,7 @@ export default function Profile() {
             <Image
               rounded={'full'}
               alt={'product image'}
-              src={user?.pfp ? user?.pfp : "https://placekitten.com/250/250"}
+              src={user?.pfp ? user?.pfp : "https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80"}
               fit={'cover'}
               align={'center'}
               w={{base:'100%', sm: "300px", md:"400px", lg: "500px"}}

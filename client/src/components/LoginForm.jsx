@@ -65,7 +65,8 @@ export default function LoginForm({onLogin}) {
                     autoComplete='email'
                     color={"white"}
                     borderRadius={"full"}
-                    className='w-full px-3 py-2 border border-gray-300 rounded-md hover:outline-dark_blue '
+                    _hover={{borderColor:"#2B6ADE"}}
+                    className='w-full'
                 />
             </div>
             <div className='mt-4'>
@@ -86,7 +87,8 @@ export default function LoginForm({onLogin}) {
                         color={"white"}
                         borderRadius={"full"}
                         autoComplete="current-password"
-                        className='hover:outline-dark_blue'
+                        _hover={{borderColor:"#2B6ADE"}}
+                        className='w-full'
                     />
                     <InputRightElement width="4.5rem">
                         <button 

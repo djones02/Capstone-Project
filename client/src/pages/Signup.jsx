@@ -31,7 +31,7 @@ export const action = async ({request}) => {
   try {
     console.log("hello")
     const newUser = await createUser(values)
-    return redirect("/profile")
+    // return redirect("/profile")
   } catch (error) {
     return {error: "Error creating new user"}
   }
@@ -54,6 +54,7 @@ export default function Signup({onLogin, toggleShowLogin}) {
     .then(newUser => {
       // onLogin(newUser)
       navigate("../home")
+      window.location.reload()
     })
   }
   const formik = useFormik({
@@ -90,7 +91,8 @@ export default function Signup({onLogin, toggleShowLogin}) {
             value={formik.values.name}
             color={"white"}
             borderRadius={"full"}
-            className='w-full px-3 py-2 border border-white hover:outline-dark_blue rounded-md focus:outline-none focus:border-indigo-500'
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full'
           />
           {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
         </div>
@@ -107,7 +109,8 @@ export default function Signup({onLogin, toggleShowLogin}) {
             value={formik.values.email}
             color={"white"}
             borderRadius={"full"}
-            className='w-full px-3 py-2 border border-white hover:outline-dark_blue rounded-md focus:outline-none focus:border-indigo-500'
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full'
           />
           {formik.errors.email ? <div className='text-white'>{formik.errors.email}</div> : null}
         </div>
@@ -126,7 +129,8 @@ export default function Signup({onLogin, toggleShowLogin}) {
               value={formik.values.password}
               color={"white"}
               borderRadius={"full"}
-              className="border border-white hover:outline-dark_blue"
+              _hover={{borderColor:"#2B6ADE"}}
+              className="w-full"
             />
             <InputRightElement width="4.5rem">
               <button
@@ -158,7 +162,8 @@ export default function Signup({onLogin, toggleShowLogin}) {
             paddingInlineStart={"none"}
             paddingInlineEnd={"none"}
             borderRadius={"full"}
-            className="block w-full cursor-pointer bg-gray border-none border-white text-white hover:outline-dark_blue focus:border-dark_blue text-sm rounded-lg pe-0 file:mr-4 file:py-2 file:px-4 file:bg-dark_blue file:text-white file:border-none file:rounded-full file:h-[39px]"
+            _hover={{borderColor:"#2B6ADE"}}
+            className="block w-full cursor-pointer bg-gray border-white text-white file:mr-4 file:py-2 file:px-4 file:bg-dark_blue file:text-white file:border-none file:rounded-full file:h-[39px]"
           />
           {formik.errors.pfp ? <div>{formik.errors.pfp}</div> : null}
         </div>

@@ -48,7 +48,7 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="name"
                                     placeholder="Name"
-                                    className="p-1 rounded-xl w-2/3"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='name' component="div" className='flex flex-row justify-end text-white'/>
@@ -58,7 +58,7 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="quality"
                                     placeholder="Quality"
-                                    className="p-1 rounded-xl w-2/3"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='quality' component="div" className='flex flex-row justify-end text-white'/>
@@ -68,7 +68,7 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="price"
                                     placeholder="Price"
-                                    className="p-1 rounded-xl w-2/3"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='price' component="div" className='flex flex-row justify-end text-white'/>
@@ -78,7 +78,7 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="picture"
                                     placeholder="Picture"
-                                    className="p-1 rounded-xl w-2/3"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='picture' component="div" className='flex flex-row justify-end text-white'/>
@@ -88,7 +88,7 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="description"
                                     placeholder="Description"
-                                    className="p-1 rounded-xl w-2/3"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='description' component="div" className='flex flex-row justify-end text-white'/>
@@ -98,13 +98,13 @@ export default function AddListing({onClose, addNewListing}) {
                                     type="text"
                                     name="amount"
                                     placeholder="Amount"
-                                    className="p-1 rounded-xl w-2/3 hover:border-dark_blue"
+                                    className="p-1 rounded-full w-2/3 bg-black border-white border hover:border-dark_blue px-4 text-white"
                                 />
                             </div>
                             <ErrorMessage name='amount' component="div" className='flex flex-row justify-end text-white'/>
                             <div className='flex justify-center mt-6'>
                                 <button
-                                    className='btn btn-sm rounded-2xl justify-center border-white w-3/6 h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-light_blue transition duration-300 mx-2'
+                                    className='btn btn-sm rounded-full justify-center border-white w-3/6 h-[40px] bg-dark_blue text-white text-sm font-bold py-2 px-4 hover:bg-light_blue transition duration-300 mx-2'
                                     type='submit'
                                     disabled={isSubmitting}
                                 >

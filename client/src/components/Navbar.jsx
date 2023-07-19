@@ -16,7 +16,8 @@ export default function Navbar({user, onLogout, toggleSignup}) {
   }
   return (
     <div 
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: '9999' }}
+      
+        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: '9999', boxShadow:"1px 5px 25px rgba(0, 0, 0, 1)" }}
         className='navbar bg-black p-0'>
           <div className='navbar-start'>
             {user ? (
@@ -101,7 +102,7 @@ export default function Navbar({user, onLogout, toggleSignup}) {
               <div className='dropdown dropdown-end mx-4'>
                 <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
                   <div className="w-16 rounded-full transform transition-transform hover:scale-110">
-                    <img src={user?.pfp}/>
+                    <img src={user?.pfp || "https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80"}/>
                   </div>
                 </label>
                 <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'>

@@ -29,7 +29,7 @@ export default function UserCard({user}) {
                 style={{boxShadow:"6px 8px 15px rgba(0, 0, 0, 1)"}}>
                 <Avatar
                     size={'xl'}
-                    src={user?.pfp ? user?.pfp : "https://placekitten.com/250/250"}
+                    src={user?.pfp ? user?.pfp : "https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80"}
                     alt={'Avatar Alt'}
                     mb={4}
                     pos={'relative'}

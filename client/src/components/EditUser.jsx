@@ -32,6 +32,7 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
         })
         .catch(error => console.error(error))
         navigate("/login")
+        window.location.reload()
       })
   }
   function handleSubmit(id, values) {
@@ -75,11 +76,13 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
           id="name"
           name="name"
           type="text"
-          style={{borderWidth:"2px",}}
+          style={{borderWidth:"1px"}}
           onChange={formik.handleChange}
           value={formik.values.name}
           borderRadius={"full"}
-          className="w-full text-white px-3 py-2 border border-gray-300 focus:outline-none focus:border-indigo-500"
+          px={"6"}
+          _hover={{borderColor:"#2B6ADE"}}
+          className="w-full text-white"
         />
         {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
       </div>
@@ -93,11 +96,13 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
           id="email"
           name="email"
           type="email"
-          style={{borderWidth:"2px",}}
+          style={{borderWidth:"1px",}}
           onChange={formik.handleChange}
           value={formik.values.email}
           borderRadius={"full"}
-          className="w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          px={6}
+          _hover={{borderColor:"#2B6ADE"}}
+          className="w-full text-white"
         />
         {formik.errors.email ? <div className='text-white'>{formik.errors.email}</div> : null}
       </div>
@@ -111,14 +116,14 @@ export default function EditUser({user, onClose, handleUserUpdate}) {
           id="profilePicture"
           name="profilePicture"
           type="file"
-          style={{borderWidth:"2px",}}
+          style={{borderWidth:"1px",}}
           onChange={event =>
             formik.setFieldValue(
               "pfp",
               URL.createObjectURL(event.currentTarget.files[0]),
             )
           }
-          className="block text-white w-full cursor-pointer bg-gray-50 border border-gray-300 focus:outline-none focus:border-transparent text-sm rounded-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-dark_blue file:text-white file:rounded-md file:border-none"
+          className="block text-white w-full hover:border-dark_blue cursor-pointer text-sm rounded-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-dark_blue file:text-white file:border-none"
         />
         {formik.errors.pfp ? (
           <div className='text-white'>{formik.errors.pfp}</div>
