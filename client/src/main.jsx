@@ -14,6 +14,8 @@ import Users from './pages/Users.jsx'
 import UserById from './pages/UserById.jsx'
 import Cart from './pages/Cart.jsx'
 import Orders from './pages/Orders.jsx'
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -33,6 +35,8 @@ root.render(
             <Route path='/user/:id' element={<UserById />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/orders' element={<Orders />} />
+            <Route path="/about" element={<About />} />
+            <Route path='/contact' element={<Contact />}/>
           </Route>
         </Routes>
       </BrowserRouter>

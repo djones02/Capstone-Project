@@ -71,7 +71,10 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.name}
-            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            borderRadius={"full"}
+            px={"4"}
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full text-white'
           />
           {formik.errors.name ? <div className='text-white'>{formik.errors.name}</div> : null}
         </div>
@@ -85,7 +88,10 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.quality}
-            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            borderRadius={"full"}
+            px={"4"}
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full text-white'
           />
           {formik.errors.quality ? <div className='text-white'>{formik.errors.quality}</div> : null}
         </div>
@@ -99,7 +105,10 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.price}
-            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            borderRadius={"full"}
+            px={"4"}
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full text-white'
           />
           {formik.errors.price ? <div className='text-white'>{formik.errors.price}</div> : null}
         </div>
@@ -113,7 +122,10 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             type='text'
             onChange={formik.handleChange}
             value={formik.values.picture}
-            className='w-full text-white px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-600'
+            borderRadius={"full"}
+            px={"4"}
+            _hover={{borderColor:"#2B6ADE"}}
+            className='w-full text-white'
           />
           {formik.errors.picture ? <div className='text-white'>{formik.errors.picture}</div> : null}
         </div>
@@ -127,6 +139,9 @@ export default function ListingEdit({listing, handleListingUpdate, onClose}) {
             onChange={formik.handleChange}
             size="sm"
             className='text-white'
+            borderRadius={"3xl"}
+            px={"4"}
+            _hover={{borderColor:"#2B6ADE"}}
           />
           {formik.errors.description ? (<div className='text-white'>{formik.errors.description}</div>) : null}
         </div>
