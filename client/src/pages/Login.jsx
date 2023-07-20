@@ -16,7 +16,7 @@ export default function Login({onLogin}) {
           <div
             className='flex flex-col justify-center items-center pt-16'>
             <LoginForm onLogin={onLogin} />
-            <Divider borderColor={"black"} className='my-4 py-6'/>
+            <Divider borderColor={"white"} className='my-4 py-6'/>
             <p className='py-4'>
               <b className='text-white'>Need an account? &nbsp;</b>
               <button
@@ -31,7 +31,7 @@ export default function Login({onLogin}) {
           <div
             className='flex flex-col justify-center items-center pt-16'>
             <SignUp onLogin={onLogin} toggleShowLogin={toggleShowLogin}/>
-            <Divider borderColor={"black"} className='my-4 py-6'/>
+            <Divider borderColor={"white"} className='my-4 py-6'/>
             <p className='py-4'>
               <b className='text-white'>Already have an account? &nbsp;</b>
               <button
